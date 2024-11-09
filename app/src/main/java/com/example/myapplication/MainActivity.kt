@@ -18,4 +18,4 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.signup_layout)
-}
+}}
