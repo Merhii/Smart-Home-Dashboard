@@ -9,4 +9,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.log_in_layout)
-}}
+
+
+
+
+    }}
