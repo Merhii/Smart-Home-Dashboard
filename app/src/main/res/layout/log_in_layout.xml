@@ -112,8 +112,10 @@
         android:textAllCaps="false"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        />
-<!--    <TextView-->
+        android:paddingStart="10dp"
+    />
+
+    <!--    <TextView-->
 <!--        android:id="@+id/TNC"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
