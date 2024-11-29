@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#84A9C0"
+    android:padding="16dp">
+
+    <!-- Header Section -->
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="149dp"
+        android:layout_height="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="24dp"
+        android:text="Merhi's Home"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+    <!-- Notification Icon -->
+    <ImageView
+        android:id="@+id/ivNotification"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="289dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/baseline_notifications_none_24"
+        android:contentDescription="Notifications"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- Profile Icon -->
+    <ImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="351dp"
+        android:layout_marginTop="26dp"
+        android:src="@drawable/account_circle_37dp_0_fill0_wght400_grad0_opsz40"
+        android:contentDescription="Profile"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- Electricity Consumption -->
+    <TextView
+        android:id="@+id/tvElectricityConsumption"
+        android:layout_width="178dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="125dp"
+        android:text="Electricity Consumption"
+        android:textSize="14sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvElectricityValue"
+        android:layout_width="83dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="161dp"
+        android:text="180kWh"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+    <!-- Approx Bill -->
+    <TextView
+        android:id="@+id/tvApproxBill"
+        android:layout_width="83dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="124dp"
+        android:text="Approx Bill"
+        android:textSize="14sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvApproxBillValue"
+            android:layout_width="72dp"
+        android:layout_height="32dp"
+      android:layout_marginStart="311dp"
+        android:layout_marginTop="161dp"
+        android:text="26.55$"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+
+    <TextView
+        android:id="@+id/tvHomeOverview"
+        android:layout_width="118dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="227dp"
+        android:text="Home Overview"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+
+    <!-- Cards Section -->
+    <LinearLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="313dp"
+        android:orientation="vertical">
+
+        <!-- First Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Card 1: Air Conditioning -->
+            <FrameLayout
+                android:id="@+id/cardAirConditioning"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/card_background"
+                android:backgroundTint="#D32F2F"
+                android:elevation="4dp">
+
+                <TextView
+                    android:id="@+id/tvAirConditioning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="19°C"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF" />
+            </FrameLayout>
+
+            <!-- Card 2: Lights -->
+            <FrameLayout
+                android:id="@+id/cardLights"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/card_background"
+                android:backgroundTint="#212121"
+                android:elevation="4dp">
+
+                <TextView
+                    android:id="@+id/tvLights"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="12 ON"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Second Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Card 3: Placeholder Blue -->
+            <FrameLayout
+                android:id="@+id/cardPlaceholder1"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/card_background"
+                android:backgroundTint="#2196F3"
+                android:elevation="4dp" />
+
+            <!-- Card 4: Placeholder Green -->
+            <FrameLayout
+                android:id="@+id/cardPlaceholder2"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/card_background"
+                android:backgroundTint="#4CAF50"
+                android:elevation="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
