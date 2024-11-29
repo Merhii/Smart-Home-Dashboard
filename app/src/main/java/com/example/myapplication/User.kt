@@ -1,16 +1,15 @@
 package com.example.myapplication
 
-class User {
+data class User(
+    val email: String,
+    val googleid: String,
+    val name: String,
+    val password: String,
+    val userid: Int,
 
-    var UserId: Int =0
-    var name: String =""
-    var email: String =""
-    var isAdmin: Boolean =false
-
-    constructor(email:String,name:String,isAdmin:Boolean)
-    {
-        this.email=email
-        this.name=name
-        this.isAdmin=isAdmin
+    val auth: AuthType
+) {
+    enum class AuthType {
+        local, google
     }
 }
