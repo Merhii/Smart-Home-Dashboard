@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DDD8B8">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="369dp"
+        android:layout_height="48dp"
+        android:text="Enter the OTP to verify"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="273dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- OTP Container -->
+    <LinearLayout
+        android:id="@+id/otpContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/tvTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp">
+
+        <!-- Repeated OTP EditTexts -->
+        <EditText
+            android:id="@+id/otp1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/otp_box"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:importantForAutofill="no" />
+        <EditText
+            android:id="@+id/otp2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/otp_box"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:importantForAutofill="no" />
+        <EditText
+            android:id="@+id/otp3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/otp_box"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:importantForAutofill="no" />
+        <EditText
+            android:id="@+id/otp4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/otp_box"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:importantForAutofill="no" />
+        <EditText
+            android:id="@+id/otp5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/otp_box"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:importantForAutofill="no" />
+        <EditText
+            android:id="@+id/otp6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/otp_box"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:importantForAutofill="no" />
+    </LinearLayout>
+
+    <!-- Enter Button -->
+    <Button
+        android:id="@+id/btnEnter"
+        android:layout_width="302dp"
+        android:layout_height="56dp"
+        android:text="Enter"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#6A66A3"
+        android:layout_below="@id/otpContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/otp_enter_btn" />
+
+    <!-- Countdown Timer -->
+    <TextView
+        android:id="@+id/tvCountdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend 0:58"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_below="@id/btnEnter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp" />
+
+    <!-- Resend Button -->
+    <Button
+        android:id="@+id/btnResend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend"
+        android:backgroundTint="#716F94"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        android:layout_below="@id/tvCountdown"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:background="@drawable/rounded_button" />
+
+</RelativeLayout>
