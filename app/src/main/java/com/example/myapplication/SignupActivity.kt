@@ -30,8 +30,8 @@ class SignupActivity : ComponentActivity() {
         setContentView(R.layout.sign_up_layout)
 
         var btn = findViewById<Button>(R.id.button)
-        var login=findViewById<Button>(R.id.btnLogin)
-
+        var login1=findViewById<Button>(R.id.btnLogin)
+        var login2=findViewById<Button>(R.id.Login)
         userName = findViewById(R.id.nametext)
         email = findViewById(R.id.emailtxt)
         password = findViewById(R.id.Passwordtxt)
@@ -49,7 +49,11 @@ class SignupActivity : ComponentActivity() {
             }
 
         }
-        login.setOnClickListener{
+        login1.setOnClickListener{
+            val intent = Intent(this@SignupActivity, LoginActivity::class.java)
+            startActivity(intent)
+        }
+        login2.setOnClickListener{
             val intent = Intent(this@SignupActivity, LoginActivity::class.java)
             startActivity(intent)
         }
