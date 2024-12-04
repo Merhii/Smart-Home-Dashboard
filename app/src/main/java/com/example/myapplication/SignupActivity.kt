@@ -30,6 +30,7 @@ class SignupActivity : ComponentActivity() {
         setContentView(R.layout.sign_up_layout)
 
         var btn = findViewById<Button>(R.id.button)
+        var login=findViewById<Button>(R.id.btnLogin)
 
         userName = findViewById(R.id.nametext)
         email = findViewById(R.id.emailtxt)
@@ -48,7 +49,13 @@ class SignupActivity : ComponentActivity() {
             }
 
         }
+        login.setOnClickListener{
+            val intent = Intent(this@SignupActivity, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
+
+
 
     private fun registerUser(email: String, password: String, username: String) {
         val registerUserDto = RegisterUserDto(email, password, username)

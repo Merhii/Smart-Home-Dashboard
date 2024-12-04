@@ -5,13 +5,16 @@
     android:layout_height="match_parent"
     android:background="@color/login">
 
-    <TextView
+    <Button
+        android:id="@+id/Login"
+        android:background="@android:color/transparent"
+        android:padding="0dp"
         android:layout_width="match_parent"
         android:layout_marginRight="35dp"
         android:layout_marginTop="35dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lora_regular"
-        android:text="Login"
+        android:fontFamily="@font/lora_variablefont_wght"
+        android:text="Log in"
         android:textAlignment="viewEnd"
         android:textColor="@color/black"
         android:textSize="18dp" />
@@ -135,6 +138,41 @@
         android:gravity="center_vertical|start"
         tools:ignore="RtlCompat"
         android:paddingStart="10dp"/>
+    <LinearLayout
+        android:id="@+id/accountSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/googlebtn"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true">
+
+        <!-- TextView for the static text -->
+        <TextView
+            android:id="@+id/tvAlreadyHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account?"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:layout_marginEnd="2dp"
+            android:fontFamily="@font/poppins_regular"/>
+
+        <!-- Button styled as text for the login link -->
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="Log in"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:background="@android:color/transparent"
+            android:padding="0dp"
+            android:layout_marginStart="0dp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/TNC"
