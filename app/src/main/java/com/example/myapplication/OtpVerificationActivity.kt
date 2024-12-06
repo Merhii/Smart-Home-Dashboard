@@ -27,7 +27,10 @@ class OtpVerificationActivity : ComponentActivity() {
     private var countDownTimer: CountDownTimer? = null
     private lateinit var btn: Button
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        val email = intent.getStringExtra("email")
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.otp)
 
@@ -38,6 +41,9 @@ class OtpVerificationActivity : ComponentActivity() {
 
         btnResend.setOnClickListener {
             btnResend.visibility = View.GONE
+            if (email != null) {
+                resendVerificationCode(email)
+            }
             startCountdown()
         }
         setUpOTPFieldListeners()
@@ -54,7 +60,7 @@ class OtpVerificationActivity : ComponentActivity() {
                     otp5.text.toString() + otp6.text.toString()
             println("String is" + otpString)
             println("Hello World")
-            val email = intent.getStringExtra("email")
+
             if (email != null) {
                 verifiy(email,otpString)
             }
@@ -123,8 +129,10 @@ class OtpVerificationActivity : ComponentActivity() {
                     Toast.makeText(
                         this@OtpVerificationActivity,
                         "Failed to register: ${response.errorBody()?.string()}",
+
                         Toast.LENGTH_SHORT
                     ).show()
+                    print(response.errorBody()?.string())
                 }
             }
 
@@ -133,4 +141,36 @@ class OtpVerificationActivity : ComponentActivity() {
             }
         })
     }
+
+
+    private fun resendVerificationCode(email: String) {
+        apiService.resendVerificationCode(email).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                if (response.isSuccessful) {
+                    val message = response.body()
+                    Toast.makeText(
+                        this@OtpVerificationActivity,
+                        "Code sent successfully: $message",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        this@OtpVerificationActivity,
+                        "Failed to resend code: ${response.errorBody()?.string()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    print(response.errorBody()?.string())
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Toast.makeText(
+                    this@OtpVerificationActivity,
+                    "Error: ${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
 }

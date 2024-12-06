@@ -8,6 +8,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface UserApi {
 //    @GET("/getAll")
@@ -15,6 +16,14 @@ interface UserApi {
 @POST("/auth/signup")
 fun registerUser(@Body registerUserDto: RegisterUserDto): Call<User>
 
-@POST("/auth/verify")
-fun verifiyUser(@Body verifyUserDto: VerifyUserDto): Call<User>
+    @POST("/auth/verify")
+    fun verifiyUser(@Body verifyUserDto: VerifyUserDto): Call<User>
+
+    @POST("/auth/resend")
+    fun resendVerificationCode(@Query("email") email: String): Call<String>
+
+    @POST("/auth/login")
+    fun loginUser(@Body loginUserDto: LoginUserDto): Call<String>
+
+
 }
