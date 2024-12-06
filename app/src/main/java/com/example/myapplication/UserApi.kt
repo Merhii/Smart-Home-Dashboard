@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import com.example.myapplication.DTO.LoginUserDto
 import com.example.myapplication.DTO.RegisterUserDto
 import com.example.myapplication.DTO.VerifyUserDto
 import com.example.myapplication.Entity.User
@@ -23,7 +24,7 @@ fun registerUser(@Body registerUserDto: RegisterUserDto): Call<User>
     fun resendVerificationCode(@Query("email") email: String): Call<String>
 
     @POST("/auth/login")
-    fun loginUser(@Body loginUserDto: LoginUserDto): Call<String>
+    fun loginUser(@Body loginUserDto: LoginUserDto): Call<User>
 
 
 }
