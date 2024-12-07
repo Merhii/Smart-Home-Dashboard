@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#84A9C0"
-    android:padding="16dp">
+    android:padding="16dp"
+    >
 
     <!-- Header Section -->
     <TextView
@@ -99,91 +100,297 @@
         android:textStyle="bold"
         android:textColor="#000000" />
 
-
-    <!-- Cards Section -->
-    <LinearLayout
-        android:id="@+id/cardContainer"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="313dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        >
 
-        <!-- First Row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <!-- Button 1: Living -->
+        <FrameLayout
+            android:id="@+id/containerLiving"
+            android:layout_width="160dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="313dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="#BF1F31"
+            android:elevation="4dp">
 
-            <!-- Card 1: Air Conditioning -->
-            <FrameLayout
-                android:id="@+id/cardAirConditioning"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/card_background"
-                android:backgroundTint="#D32F2F"
-                android:elevation="4dp">
+            <Button
+                android:id="@+id/living"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:clickable="true" />
+            <ImageView
+                android:layout_marginTop="-10dp"
+                android:layout_width="72dp"
+                android:layout_height="55dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:src="@drawable/chair" />
 
-                <TextView
-                    android:id="@+id/tvAirConditioning"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="19°C"
-                    android:textSize="24sp"
-                    android:textColor="#FFFFFF" />
-            </FrameLayout>
+            <TextView
+                android:id="@+id/tvLiving"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:text="Living room"
+                android:textColor="#000000"
+                android:textSize="21sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false" />
+        </FrameLayout>
 
-            <!-- Card 2: Lights -->
-            <FrameLayout
-                android:id="@+id/cardLights"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/card_background"
-                android:backgroundTint="#212121"
-                android:elevation="4dp">
+        <!-- Button 2: Bed -->
+        <FrameLayout
+            android:id="@+id/containerBed"
+            android:layout_width="160dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="195dp"
+            android:layout_marginTop="313dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="#AE841A"
+            android:elevation="4dp">
 
-                <TextView
-                    android:id="@+id/tvLights"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="12 ON"
-                    android:textSize="24sp"
-                    android:textColor="#FFFFFF" />
-            </FrameLayout>
-        </LinearLayout>
+            <Button
+                android:id="@+id/bed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:clickable="true" />
+            <ImageView
+                android:layout_marginTop="-6dp"
+                android:layout_width="72dp"
+                android:layout_height="55dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:src="@drawable/bed"/>
+            <TextView
+                android:id="@+id/tvBed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:text="Bed room"
+                android:textColor="#000000"
+                android:textSize="21sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false" />
+        </FrameLayout>
 
-        <!-- Second Row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <!-- Button 3: Bath -->
+        <FrameLayout
+            android:id="@+id/containerBath"
+            android:layout_width="160dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="530dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="#92319E"
+            android:elevation="4dp">
 
-            <!-- Card 3: Placeholder Blue -->
-            <FrameLayout
-                android:id="@+id/cardPlaceholder1"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/card_background"
-                android:backgroundTint="#2196F3"
-                android:elevation="4dp" />
+            <Button
+                android:id="@+id/bath"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:clickable="true" />
+            <ImageView
+                android:layout_marginTop="-6dp"
+                android:layout_width="72dp"
+                android:layout_height="55dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:src="@drawable/shower"/>
+            <TextView
+                android:id="@+id/tvBath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:text="Bath room"
+                android:textColor="#000000"
+                android:textSize="21sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false" />
+        </FrameLayout>
 
-            <!-- Card 4: Placeholder Green -->
-            <FrameLayout
-                android:id="@+id/cardPlaceholder2"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/card_background"
-                android:backgroundTint="#4CAF50"
-                android:elevation="4dp" />
-        </LinearLayout>
-    </LinearLayout>
+        <!-- Button 4: Kitchen -->
+        <FrameLayout
+            android:id="@+id/containerKitchen"
+            android:layout_width="160dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="195dp"
+            android:layout_marginTop="530dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="#3F9555"
+            android:elevation="4dp">
+
+            <Button
+                android:id="@+id/kitchen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:clickable="true" />
+            <ImageView
+                android:layout_marginTop="-6dp"
+                android:layout_width="72dp"
+                android:layout_height="55dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:src="@drawable/kitchen"/>
+
+            <TextView
+                android:id="@+id/tvKitchen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:text="Kitchen"
+                android:textColor="#000000"
+                android:textSize="21sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false" />
+        </FrameLayout>
+
+    </RelativeLayout>
+<TextView
+    android:textColor="#000000"
+    android:layout_width="200dp"
+    android:layout_height="35dp"
+    android:text="Quick Profiles:"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="760dp"
+    android:textSize="16sp"
+    android:fontFamily="@font/poppins_semibold"
+    android:textAllCaps="false"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <FrameLayout
+            android:id="@+id/containerP1"
+            android:layout_width="112dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="810dp"
+            android:background="@drawable/quick_profile"
+            android:backgroundTint="#000000"
+            android:elevation="4dp">
+
+            <Button
+                android:id="@+id/P1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:clickable="true" />
+            <Switch
+                android:id="@+id/switchControl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:track="@drawable/track"
+                android:checked="true"
+                android:scaleX="1.1"
+            />
+            <TextView
+                android:id="@+id/tvP1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-18dp"
+                android:text="sleeping"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/containerP2"
+            android:layout_width="112dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="810dp"
+            android:background="@drawable/quick_profile"
+            android:backgroundTint="#000000"
+            android:elevation="4dp">
+
+            <Button
+                android:id="@+id/P2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:clickable="true" />
+            <Switch
+                android:id="@+id/switchControl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:track="@drawable/track"
+                android:checked="false"
+                android:scaleX="1.1"
+                />
+            <TextView
+                android:id="@+id/tvP2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-18dp"
+                android:text="Good morning"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/containerP3"
+            android:layout_width="112dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="810dp"
+            android:background="@drawable/quick_profile"
+            android:backgroundTint="#000000"
+            android:elevation="4dp">
+
+            <Button
+                android:id="@+id/P3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:clickable="true" />
+            <Switch
+                android:id="@+id/switchControl3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:track="@drawable/track"
+                android:checked="true"
+                android:scaleX="1.1"
+                />
+            <TextView
+                android:id="@+id/tvP3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-18dp"
+                android:text="Leaving home"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textAllCaps="false"/>
+        </FrameLayout>
+    </RelativeLayout>
 </RelativeLayout>
