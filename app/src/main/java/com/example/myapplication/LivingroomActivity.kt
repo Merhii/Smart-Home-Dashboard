@@ -26,6 +26,8 @@ class LivingroomActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.livingroom)
+        val deviceLocation = intent.getStringExtra("loc")
+
     }
 }
 

@@ -32,22 +32,26 @@ class HomeActivity : ComponentActivity() {
         var bed= findViewById<Button>(R.id.bed)
         var bath= findViewById<Button>(R.id.bath)
         var kitchen= findViewById<Button>(R.id.kitchen)
-var usernem = intent.getStringExtra("username")
-        name.text = "$usernem's Home"
+var username = intent.getStringExtra("username")
+        name.text = "$username's Home"
         living.setOnClickListener{
             val intent = Intent(this@HomeActivity, LivingroomActivity::class.java)
+            intent.putExtra("loc", "Living Room")
             startActivity(intent)
         }
         bed.setOnClickListener{
             val intent = Intent(this@HomeActivity, BedroomActivity::class.java)
+            intent.putExtra("loc", "Bed Room")
             startActivity(intent)
         }
         bath.setOnClickListener{
             val intent = Intent(this@HomeActivity, BathroomActivity::class.java)
+            intent.putExtra("loc", "Bath Room")
             startActivity(intent)
         }
         kitchen.setOnClickListener{
             val intent = Intent(this@HomeActivity, KitchenActivity::class.java)
+            intent.putExtra("loc", "Kitchen")
             startActivity(intent)
         }
     }

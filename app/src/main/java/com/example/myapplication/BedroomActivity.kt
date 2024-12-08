@@ -26,6 +26,9 @@ class BedroomActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.bedroom)
+        val deviceLocation = intent.getStringExtra("loc")
+
+
     }
 }
 

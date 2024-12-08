@@ -26,6 +26,8 @@ class BathroomActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.bathroom)
+        val deviceLocation = intent.getStringExtra("loc")
+
     }
 }
 
