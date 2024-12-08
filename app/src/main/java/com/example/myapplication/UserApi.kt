@@ -53,9 +53,9 @@ fun registerUser(@Body registerUserDto: RegisterUserDto): Call<User>
     suspend fun getUsername(@Path("email") email: String): String // Use the email as a path variable
 
     @PUT("/devices/update-status/{location}/{name}/{status}")
-    fun updateDeviceStatus(
+    suspend fun updateDeviceStatus(
         @Path("location") location: String,
         @Path("name") name: String,
         @Path("status") status: Int
-    ): Call<String>
+    ): Call<Void>
 }

@@ -56,40 +56,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginRight="20dp">
-
-                <!-- Decrease Temperature -->
-                <ImageButton
-                    android:id="@+id/btnDecreaseTemp"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:backgroundTint="#6A66A3"
-                    android:src="@drawable/ic_arrow_down"
-                    android:contentDescription="Decrease Temperature"
-                    android:layout_marginBottom="2dp"/>
-
-                <!-- Temperature Display -->
-                <TextView
-                    android:id="@+id/tvTemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="20"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:fontFamily="@font/poppins_regular"
-                    android:gravity="center"
-                    android:layout_marginHorizontal="4dp" />
-
-                <!-- Increase Temperature -->
-                <ImageButton
-                    android:id="@+id/btnIncreaseTemp"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                   android:backgroundTint="#6A66A3"
-                    android:src="@drawable/ic_arrow_up"
-                    android:contentDescription="Increase Temperature"
-                    android:layout_marginTop="3dp"/>
-            </LinearLayout>
+                android:layout_marginRight="20dp"/>
 
             <!-- Switch -->
             <Switch
