@@ -32,8 +32,8 @@ class HomeActivity : ComponentActivity() {
         var bed= findViewById<Button>(R.id.bed)
         var bath= findViewById<Button>(R.id.bath)
         var kitchen= findViewById<Button>(R.id.kitchen)
-
-        name.text = "Hoome"
+var usernem = intent.getStringExtra("username")
+        name.text = "$usernem's Home"
         living.setOnClickListener{
             val intent = Intent(this@HomeActivity, LivingroomActivity::class.java)
             startActivity(intent)

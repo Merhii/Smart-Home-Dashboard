@@ -10,6 +10,10 @@ import androidx.activity.enableEdgeToEdge
 import com.example.myapplication.DTO.LoginUserDto
 import com.example.myapplication.Entity.User
 import com.example.myapplication.RetrofitInstance.apiService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,10 +59,17 @@ class LoginActivity : ComponentActivity() {
                 if (response.isSuccessful) {
                     val user = response.body()
                     Toast.makeText(this@LoginActivity, "User loged IN: $user", Toast.LENGTH_SHORT).show()
-                    println("YAAAAY")
-                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                    intent.putExtra("id", user?.userid) // Add more data if needed
-                    startActivity(intent)
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val username = getUsername(email)  // Call the suspending function inside coroutine
+
+                        // Now update the UI thread with the username
+                        withContext(Dispatchers.Main) {
+                            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                            intent.putExtra("id", user?.userid)
+                            intent.putExtra("username", username) // Pass username here
+                            startActivity(intent)
+                        }
+                    }
                 } else {
                     Toast.makeText(
                         this@LoginActivity,
@@ -73,4 +84,11 @@ class LoginActivity : ComponentActivity() {
             }
         })
     }
+
+    suspend fun getUsername(email: String): String? {
+
+            return apiService.getUsername(email)
+        }
+
+
     }
