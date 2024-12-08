@@ -117,28 +117,29 @@ class OtpVerificationActivity : ComponentActivity() {
     private fun verifiy(email: String, verificationCode: String) {
         val verifyUserDto = VerifyUserDto(email, verificationCode)
 
-        apiService.verifiyUser(verifyUserDto).enqueue(object : Callback<User> {
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if (response.isSuccessful) {
-                    val user = response.body()
-                    Toast.makeText(this@OtpVerificationActivity, "User verified: $user", Toast.LENGTH_SHORT).show()
-//                    val intent = Intent(this@MainActivity, OtpVerificationActivity::class.java)
-//                    intent.putExtra("email", user?.email) // Add more data if needed
-//                    startActivity(intent)
-                } else {
-                    Toast.makeText(
-                        this@OtpVerificationActivity,
-                        "Failed to register: ${response.errorBody()?.string()}",
+        apiService.verifiyUser(verifyUserDto).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
 
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    print(response.errorBody()?.string())
+                if (response.isSuccessful) {
+                    val message = response.body()
+                    println("Raw Response: $message")  // Log the raw response for debugging
+                    Toast.makeText(this@OtpVerificationActivity, "Response: $message", Toast.LENGTH_SHORT).show()
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    println("Error Response: $errorBody")
+                    Toast.makeText(this@OtpVerificationActivity, "Failed to verify: $errorBody", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(this@OtpVerificationActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<String>, t: Throwable) {
+
+                Toast.makeText(this@OtpVerificationActivity, "OK", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this@OtpVerificationActivity, LoginActivity::class.java)
+                startActivity(intent)
             }
+
+
         })
     }
 

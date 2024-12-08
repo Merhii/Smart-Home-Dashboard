@@ -30,7 +30,10 @@ class MainActivity : ComponentActivity() {
         btn.setOnClickListener{
             val intent = Intent(this@MainActivity, SignupActivity::class.java)
             startActivity(intent)
+
         }
     }
+
+
 }
 

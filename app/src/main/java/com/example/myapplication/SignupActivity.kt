@@ -41,9 +41,7 @@ class SignupActivity : ComponentActivity() {
             val username = userName.text.toString()
             if (email.isNotEmpty() && password.isNotEmpty() && username.isNotEmpty()) {
                 registerUser(email, password, username)
-                val intent = Intent(this@SignupActivity, OtpVerificationActivity::class.java)
-                intent.putExtra("email", email) // Add more data if needed
-                startActivity(intent)
+
             } else {
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             }
@@ -69,7 +67,10 @@ class SignupActivity : ComponentActivity() {
                 if (response.isSuccessful) {
                     val user = response.body()
                     Toast.makeText(this@SignupActivity, "User registered: $user", Toast.LENGTH_SHORT).show()
-
+                    val intent = Intent(this@SignupActivity, OtpVerificationActivity::class.java)
+                    intent.putExtra("email", email)
+                    intent.putExtra("password", password)
+                    startActivity(intent)
                 } else {
                     Toast.makeText(
                         this@SignupActivity,
@@ -80,7 +81,8 @@ class SignupActivity : ComponentActivity() {
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(this@SignupActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@SignupActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                println("Error: ${t.message}")
             }
         })
     }

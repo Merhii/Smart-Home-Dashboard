@@ -10,7 +10,7 @@ data class User(
     val userid: Int,
     val enable: Boolean,
     val verificationCode: String,
-    val verificationCodeExpiresAt: LocalDateTime,
+    val verificationCodeExpiresAt: String,
     val auth: AuthType
 ) {
     enum class AuthType {

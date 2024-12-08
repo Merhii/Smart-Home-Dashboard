@@ -56,6 +56,9 @@ class LoginActivity : ComponentActivity() {
                     val user = response.body()
                     Toast.makeText(this@LoginActivity, "User loged IN: $user", Toast.LENGTH_SHORT).show()
                     println("YAAAAY")
+                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                    intent.putExtra("id", user?.userid) // Add more data if needed
+                    startActivity(intent)
                 } else {
                     Toast.makeText(
                         this@LoginActivity,

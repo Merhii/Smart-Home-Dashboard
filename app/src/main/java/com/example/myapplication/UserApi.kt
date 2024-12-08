@@ -23,7 +23,7 @@ interface UserApi {
 fun registerUser(@Body registerUserDto: RegisterUserDto): Call<User>
 
     @POST("/auth/verify")
-    fun verifiyUser(@Body verifyUserDto: VerifyUserDto): Call<User>
+    fun verifiyUser(@Body verifyUserDto: VerifyUserDto): Call<String>
 
     @POST("/auth/resend")
     fun resendVerificationCode(@Query("email") email: String): Call<String>
@@ -48,4 +48,7 @@ fun registerUser(@Body registerUserDto: RegisterUserDto): Call<User>
     // Update device status
     @PUT("/{deviceid}/{status}")
     fun updateDeviceStatus(@Path("deviceid") deviceId: Int, @Path("status") status: Int): Call<String>
+
+    @GET("/users/username/{email}")
+    fun getUsername(@Path("email") email: String): Call<String> // Use the email as a path variable
 }

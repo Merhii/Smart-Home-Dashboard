@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
@@ -27,9 +28,12 @@ class HomeActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.home_status)
         var living = findViewById<Button>(R.id.living)
+        var name = findViewById<TextView>(R.id.tvHeader)
         var bed= findViewById<Button>(R.id.bed)
         var bath= findViewById<Button>(R.id.bath)
         var kitchen= findViewById<Button>(R.id.kitchen)
+
+        name.text = "Hoome"
         living.setOnClickListener{
             val intent = Intent(this@HomeActivity, LivingroomActivity::class.java)
             startActivity(intent)
