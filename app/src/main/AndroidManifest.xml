@@ -28,6 +28,11 @@
         <activity android:name=".OtpVerificationActivity"/>
         <activity android:name=".SignupActivity"/>
         <activity android:name=".LoginActivity"/>
+        <activity android:name=".HomeActivity"/>
+        <activity android:name=".LivingroomActivity"/>
+        <activity android:name=".BedroomActivity"/>
+        <activity android:name=".BathroomActivity"/>
+        <activity android:name=".KitchenActivity"/>
     </application>
 
 </manifest>

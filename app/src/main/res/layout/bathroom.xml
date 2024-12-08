@@ -1,0 +1,185 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#84A9C0"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvBathRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Bath Room"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="24dp" />
+
+    <!-- Card Container -->
+    <LinearLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvBathRoom"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <!-- Exhaust Fan Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_boxes"
+            android:backgroundTint="#6A66A3"
+            android:padding="8dp"
+            android:elevation="4dp"
+            android:layout_gravity="center_vertical"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Exhaust Fan"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical" />
+
+            <Switch
+                android:id="@+id/switchexhaust"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:thumbTint="#FFFFFF"
+                android:track="@drawable/track"/>
+        </LinearLayout>
+
+
+
+        <!-- heater Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_boxes"
+            android:backgroundTint="#6A66A3"
+            android:padding="8dp"
+            android:elevation="4dp"
+            android:layout_gravity="center_vertical"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Heater"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical" />
+
+            <Switch
+                android:id="@+id/switchheater"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:thumbTint="#FFFFFF"
+                android:track="@drawable/track"/>
+        </LinearLayout>
+        <!-- lights -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_boxes"
+            android:backgroundTint="#6A66A3"
+            android:padding="8dp"
+            android:elevation="4dp"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Lights"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical" />
+
+            <Switch
+                android:id="@+id/switchlights"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:thumbTint="#FFFFFF"
+                android:track="@drawable/track"/>
+        </LinearLayout>
+        <!-- Speaker Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_boxes"
+            android:backgroundTint="#6A66A3"
+            android:padding="8dp"
+            android:elevation="4dp"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Speaker"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical" />
+
+            <Switch
+                android:id="@+id/switchspeaker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:thumbTint="#FFFFFF"
+                android:track="@drawable/track"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_boxes"
+            android:backgroundTint="#6A66A3"
+            android:padding="8dp"
+            android:elevation="4dp"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Water pump"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical" />
+
+            <Switch
+                android:id="@+id/switchpump"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:thumbTint="#FFFFFF"
+                android:track="@drawable/track"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
