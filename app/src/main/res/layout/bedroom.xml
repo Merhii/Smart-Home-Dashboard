@@ -34,7 +34,7 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#DDD8B8"
+            android:backgroundTint="#6A66A3"
             android:padding="8dp"
             android:elevation="4dp"
             android:layout_gravity="center_vertical">
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="AC"
-                android:textSize="21sp"
+                android:textSize="18sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="center_vertical" />
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:thumbTint="#FFFFFF"
-                android:track="@drawable/track" />
+                android:track="@drawable/track"/>
         </LinearLayout>
 
 
@@ -77,7 +77,7 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#DDD8B8"
+            android:backgroundTint="#6A66A3"
             android:padding="8dp"
             android:elevation="4dp"
             android:layout_gravity="center_vertical"
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Lights"
-                android:textSize="21sp"
+                android:textSize="18sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="center_vertical" />
@@ -108,7 +108,7 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#DDD8B8"
+            android:backgroundTint="#6A66A3"
             android:padding="8dp"
             android:elevation="4dp"
             android:layout_gravity="center_vertical">
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Bed lamp"
-                android:textSize="21sp"
+                android:textSize="18sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="center_vertical" />
@@ -138,7 +138,7 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#DDD8B8"
+            android:backgroundTint="#6A66A3"
             android:padding="8dp"
             android:elevation="4dp"
             android:layout_gravity="center_vertical">
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Curtains"
-                android:textSize="21sp"
+                android:textSize="18sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="center_vertical" />

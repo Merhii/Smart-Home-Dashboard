@@ -1,12 +1,9 @@
 package com.example.myapplication
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -30,8 +27,6 @@ class HomeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.home_status)
-        var profile = findViewById<ImageView>(R.id.ivProfile)
-        var notification = findViewById<ImageView>(R.id.ivNotification)
         var living = findViewById<Button>(R.id.living)
         var name = findViewById<TextView>(R.id.tvHeader)
         var bed= findViewById<Button>(R.id.bed)
@@ -39,13 +34,6 @@ class HomeActivity : ComponentActivity() {
         var kitchen= findViewById<Button>(R.id.kitchen)
 var username = intent.getStringExtra("username")
         name.text = "$username's Home"
-        notification.setOnClickListener {
-            showNotificationDialog()
-        }
-        profile.setOnClickListener{
-            val intent = Intent(this@HomeActivity, ProfileActivity::class.java)
-            startActivity(intent)
-        }
         living.setOnClickListener{
             val intent = Intent(this@HomeActivity, LivingroomActivity::class.java)
             intent.putExtra("loc", "Living Room")
@@ -65,24 +53,6 @@ var username = intent.getStringExtra("username")
             val intent = Intent(this@HomeActivity, KitchenActivity::class.java)
             intent.putExtra("loc", "Kitchen")
             startActivity(intent)
-        }
-    }
-    private fun showNotificationDialog() {
-        // Inflate the custom dialog layout
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_notifications, null)
-
-        // Create the AlertDialog
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
-
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog.show()
-
-        // Close button action
-        val btnCloseDialog: Button = dialogView.findViewById(R.id.btnCloseDialog)
-        btnCloseDialog.setOnClickListener {
-            dialog.dismiss()
         }
     }
 }
