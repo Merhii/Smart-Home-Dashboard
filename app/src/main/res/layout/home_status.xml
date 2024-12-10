@@ -10,21 +10,21 @@
     <!-- Header Section -->
     <TextView
         android:id="@+id/tvHeader"
-        android:layout_width="149dp"
-        android:layout_height="32dp"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_marginStart="17dp"
         android:layout_marginTop="24dp"
         android:text=""
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="#000000" />
 
     <!-- Notification Icon -->
     <ImageView
         android:id="@+id/ivNotification"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="289dp"
         android:layout_marginTop="24dp"
         android:src="@drawable/baseline_notifications_none_24"
@@ -35,9 +35,9 @@
     <!-- Profile Icon -->
     <ImageView
         android:id="@+id/ivProfile"
-        android:layout_width="32dp"
+        android:layout_width="45dp"
         android:layout_height="32dp"
-        android:layout_marginStart="351dp"
+        android:layout_marginStart="341dp"
         android:layout_marginTop="26dp"
         android:src="@drawable/account_circle_37dp_0_fill0_wght400_grad0_opsz40"
         android:contentDescription="Profile"
@@ -47,56 +47,56 @@
     <!-- Electricity Consumption -->
     <TextView
         android:id="@+id/tvElectricityConsumption"
-        android:layout_width="178dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="125dp"
         android:text="Electricity Consumption"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:textColor="#000000" />
 
     <TextView
         android:id="@+id/tvElectricityValue"
-        android:layout_width="83dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="161dp"
         android:text="180kWh"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000" />
 
     <!-- Approx Bill -->
     <TextView
         android:id="@+id/tvApproxBill"
-        android:layout_width="83dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="280dp"
         android:layout_marginTop="124dp"
         android:text="Approx Bill"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:textColor="#000000" />
 
     <TextView
         android:id="@+id/tvApproxBillValue"
-            android:layout_width="72dp"
-        android:layout_height="32dp"
+            android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
       android:layout_marginStart="311dp"
         android:layout_marginTop="161dp"
         android:text="26.55$"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000" />
 
 
     <TextView
         android:id="@+id/tvHomeOverview"
-        android:layout_width="118dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="227dp"
         android:text="Home Overview"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000" />
 
@@ -113,7 +113,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="313dp"
             android:background="@drawable/rounded_button"
-            android:backgroundTint="#BF1F31"
+            android:backgroundTint="#FF0004"
             android:elevation="4dp">
 
             <Button
@@ -152,7 +152,7 @@
             android:layout_marginStart="195dp"
             android:layout_marginTop="313dp"
             android:background="@drawable/rounded_button"
-            android:backgroundTint="#AE841A"
+            android:backgroundTint="#FBFF00"
             android:elevation="4dp">
 
             <Button
@@ -190,7 +190,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="530dp"
             android:background="@drawable/rounded_button"
-            android:backgroundTint="#92319E"
+            android:backgroundTint="#1EFF00"
             android:elevation="4dp">
 
             <Button
@@ -228,7 +228,7 @@
             android:layout_marginStart="195dp"
             android:layout_marginTop="530dp"
             android:background="@drawable/rounded_button"
-            android:backgroundTint="#3F9555"
+            android:backgroundTint="#00FFFB"
             android:elevation="4dp">
 
             <Button
@@ -299,7 +299,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:track="@drawable/track"
-                android:checked="true"
                 android:scaleX="1.1"
             />
             <TextView
@@ -338,7 +337,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:track="@drawable/track"
-                android:checked="false"
                 android:scaleX="1.1"
                 />
             <TextView
@@ -377,7 +375,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:track="@drawable/track"
-                android:checked="true"
                 android:scaleX="1.1"
                 />
             <TextView
