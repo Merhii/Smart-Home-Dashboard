@@ -47,56 +47,56 @@
     <!-- Electricity Consumption -->
     <TextView
         android:id="@+id/tvElectricityConsumption"
-        android:layout_width="178dp"
+        android:layout_width="200dp"
         android:layout_height="23dp"
         android:layout_marginStart="17dp"
         android:layout_marginTop="125dp"
         android:text="Electricity Consumption"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textColor="#000000" />
 
     <TextView
         android:id="@+id/tvElectricityValue"
         android:layout_width="83dp"
         android:layout_height="32dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="161dp"
         android:text="180kWh"
-        android:textSize="20sp"
+        android:textSize="21sp"
         android:textStyle="bold"
         android:textColor="#000000" />
 
     <!-- Approx Bill -->
     <TextView
         android:id="@+id/tvApproxBill"
-        android:layout_width="90dp"
+        android:layout_width="100dp"
         android:layout_height="24dp"
-        android:layout_marginStart="295dp"
+        android:layout_marginStart="280dp"
         android:layout_marginTop="124dp"
         android:text="Approx Bill"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textColor="#000000" />
 
     <TextView
         android:id="@+id/tvApproxBillValue"
             android:layout_width="72dp"
         android:layout_height="32dp"
-      android:layout_marginStart="311dp"
+      android:layout_marginStart="280dp"
         android:layout_marginTop="161dp"
         android:text="26.55$"
-        android:textSize="20sp"
+        android:textSize="21sp"
         android:textStyle="bold"
         android:textColor="#000000" />
 
 
     <TextView
         android:id="@+id/tvHomeOverview"
-        android:layout_width="118dp"
-        android:layout_height="23dp"
+        android:layout_width="130dp"
+        android:layout_height="25dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="227dp"
         android:text="Home Overview"
-        android:textSize="18sp"
+        android:textSize="21sp"
         android:textStyle="bold"
         android:textColor="#000000" />
 
@@ -111,7 +111,7 @@
             android:layout_width="160dp"
             android:layout_height="200dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="313dp"
+            android:layout_marginTop="280dp"
             android:background="@drawable/drop_shadow_frame"
             android:backgroundTint="@color/white"
             android:elevation="10dp">
@@ -150,7 +150,7 @@
             android:layout_width="160dp"
             android:layout_height="200dp"
             android:layout_marginStart="195dp"
-            android:layout_marginTop="313dp"
+            android:layout_marginTop="280dp"
             android:background="@drawable/drop_shadow_frame"
             android:backgroundTint="@color/white"
             android:elevation="10dp">
@@ -190,7 +190,7 @@
             android:layout_width="160dp"
             android:layout_height="200dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="530dp"
+            android:layout_marginTop="500dp"
             android:background="@drawable/drop_shadow_frame"
             android:backgroundTint="@color/white"
             android:elevation="10dp">
@@ -228,7 +228,7 @@
             android:layout_width="160dp"
             android:layout_height="200dp"
             android:layout_marginStart="195dp"
-            android:layout_marginTop="530dp"
+            android:layout_marginTop="500dp"
             android:background="@drawable/drop_shadow_frame"
             android:backgroundTint="@color/white"
             android:elevation="10dp">
@@ -268,7 +268,7 @@
     android:layout_height="35dp"
     android:text="Quick Profiles:"
     android:layout_marginStart="20dp"
-    android:layout_marginTop="760dp"
+    android:layout_marginTop="730dp"
     android:textSize="18sp"
     android:fontFamily="@font/poppins_semibold"
     android:textAllCaps="false"/>
@@ -282,7 +282,7 @@
             android:layout_width="112dp"
             android:layout_height="80dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="810dp"
+            android:layout_marginTop="770dp"
             android:background="@drawable/quick_profile"
             android:backgroundTint="#FFFFFF"
             android:elevation="10dp">
@@ -301,7 +301,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:checked="true"
                 android:scaleX="1.1"
                 android:track="@drawable/track" />
 
@@ -323,7 +322,7 @@
             android:layout_width="112dp"
             android:layout_height="80dp"
             android:layout_marginStart="140dp"
-            android:layout_marginTop="810dp"
+            android:layout_marginTop="770dp"
             android:background="@drawable/quick_profile"
             android:backgroundTint="#FFFFFF"
             android:elevation="10dp">
@@ -342,7 +341,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:checked="false"
                 android:scaleX="1.1"
                 android:track="@drawable/track" />
 
@@ -364,7 +362,7 @@
             android:layout_width="112dp"
             android:layout_height="80dp"
             android:layout_marginStart="260dp"
-            android:layout_marginTop="810dp"
+            android:layout_marginTop="770dp"
             android:background="@drawable/quick_profile"
             android:backgroundTint="#FFFFFF"
             android:elevation="10dp">
@@ -383,7 +381,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:checked="true"
                 android:scaleX="1.1"
                 android:track="@drawable/track" />
 
