@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#84A9C0"
+    android:background="#F5F5F5"
     android:padding="16dp">
 
     <!-- Title -->
@@ -34,7 +34,7 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#6A66A3"
+            android:backgroundTint="#B9B7CF"
             android:padding="8dp"
             android:elevation="4dp"
             android:layout_gravity="center_vertical">
@@ -45,9 +45,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="AC"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="#000000"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/poppins_semibold"
                 android:gravity="center_vertical" />
 
             <!-- Temperature Controls -->
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:thumbTint="#FFFFFF"
+                android:thumbTint="#000000"
                 android:track="@drawable/track"
 />
         </LinearLayout>
@@ -78,7 +78,7 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#6A66A3"
+            android:backgroundTint="#B9B7CF"
             android:padding="8dp"
             android:elevation="4dp"
             android:layout_gravity="center_vertical"
@@ -88,18 +88,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/poppins_semibold"
                 android:gravity="center_vertical"
                 android:text="Air purifier"
                 android:textColor="#000000"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <Switch
                 android:id="@+id/switchpurifier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:thumbTint="#FFFFFF"
+                android:thumbTint="#000000"
                 android:track="@drawable/track"/>
         </LinearLayout>
 
@@ -110,7 +110,7 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#6A66A3"
+            android:backgroundTint="#B9B7CF"
             android:padding="8dp"
             android:elevation="4dp"
             android:layout_gravity="center_vertical">
@@ -120,9 +120,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Curtains"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="#000000"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/poppins_semibold"
                 android:gravity="center_vertical" />
 
             <Switch
@@ -130,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:thumbTint="#FFFFFF"
+                android:thumbTint="#000000"
                 android:track="@drawable/track"/>
         </LinearLayout>
 
@@ -141,7 +141,7 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#6A66A3"
+            android:backgroundTint="#B9B7CF"
             android:padding="8dp"
             android:elevation="4dp"
             android:layout_gravity="center_vertical">
@@ -151,9 +151,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Middle lights"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="#000000"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/poppins_semibold"
                 android:gravity="center_vertical" />
 
             <Switch
@@ -161,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:thumbTint="#FFFFFF"
+                android:thumbTint="#000000"
                 android:track="@drawable/track"/>
         </LinearLayout>
         <LinearLayout
@@ -170,7 +170,7 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#6A66A3"
+            android:backgroundTint="#B9B7CF"
             android:padding="8dp"
             android:elevation="4dp"
             android:layout_gravity="center_vertical">
@@ -180,9 +180,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Edge lights"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="#000000"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/poppins_semibold"
                 android:gravity="center_vertical" />
 
             <Switch
@@ -190,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:thumbTint="#FFFFFF"
+                android:thumbTint="#000000"
                 android:track="@drawable/track"/>
         </LinearLayout>
     </LinearLayout>
