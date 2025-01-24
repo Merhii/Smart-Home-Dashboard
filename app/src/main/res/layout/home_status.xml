@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#84A9C0"
+    android:background="#F5F5F5"
     android:padding="16dp"
     >
 
@@ -112,9 +112,9 @@
             android:layout_height="200dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="313dp"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="#BF1F31"
-            android:elevation="4dp">
+            android:background="@drawable/drop_shadow_frame"
+            android:backgroundTint="@color/white"
+            android:elevation="10dp">
 
             <Button
                 android:id="@+id/living"
@@ -151,9 +151,9 @@
             android:layout_height="200dp"
             android:layout_marginStart="195dp"
             android:layout_marginTop="313dp"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="#AE841A"
-            android:elevation="4dp">
+            android:background="@drawable/drop_shadow_frame"
+            android:backgroundTint="@color/white"
+            android:elevation="10dp">
 
             <Button
                 android:id="@+id/bed"
@@ -181,133 +181,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:textAllCaps="false" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <FrameLayout
-                    android:id="@+id/containerP1"
-                    android:layout_width="112dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="810dp"
-                    android:background="@drawable/quick_profile"
-                    android:backgroundTint="#000000"
-                    android:elevation="4dp">
-
-                    <Button
-                        android:id="@+id/P1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:clickable="true"
-                        android:focusable="false" />
-
-                    <Switch
-                        android:id="@+id/switchControl1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:checked="true"
-                        android:scaleX="1.1"
-                        android:track="@drawable/track" />
-
-                    <TextView
-                        android:id="@+id/tvP1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="-18dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="sleeping"
-                        android:textAllCaps="false"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/containerP2"
-                    android:layout_width="112dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="140dp"
-                    android:layout_marginTop="810dp"
-                    android:background="@drawable/quick_profile"
-                    android:backgroundTint="#000000"
-                    android:elevation="4dp">
-
-                    <Button
-                        android:id="@+id/P2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:clickable="true"
-                        android:focusable="false" />
-
-                    <Switch
-                        android:id="@+id/switchControl2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:checked="false"
-                        android:scaleX="1.1"
-                        android:track="@drawable/track" />
-
-                    <TextView
-                        android:id="@+id/tvP2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="-18dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Good morning"
-                        android:textAllCaps="false"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/containerP3"
-                    android:layout_width="112dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="260dp"
-                    android:layout_marginTop="810dp"
-                    android:background="@drawable/quick_profile"
-                    android:backgroundTint="#000000"
-                    android:elevation="4dp">
-
-                    <Button
-                        android:id="@+id/P3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:clickable="true"
-                        android:focusable="false" />
-
-                    <Switch
-                        android:id="@+id/switchControl3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:checked="true"
-                        android:scaleX="1.1"
-                        android:track="@drawable/track" />
-
-                    <TextView
-                        android:id="@+id/tvP3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="-18dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Leaving home"
-                        android:textAllCaps="false"
-                        android:textColor="#ffffff"
-                        android:textSize="14sp" />
-                </FrameLayout>
-            </RelativeLayout>
         </FrameLayout>
 
         <!-- Button 3: Bath -->
@@ -317,9 +191,9 @@
             android:layout_height="200dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="530dp"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="#92319E"
-            android:elevation="4dp">
+            android:background="@drawable/drop_shadow_frame"
+            android:backgroundTint="@color/white"
+            android:elevation="10dp">
 
             <Button
                 android:id="@+id/bath"
@@ -355,9 +229,9 @@
             android:layout_height="200dp"
             android:layout_marginStart="195dp"
             android:layout_marginTop="530dp"
-            android:background="@drawable/rounded_button"
-            android:backgroundTint="#3F9555"
-            android:elevation="4dp">
+            android:background="@drawable/drop_shadow_frame"
+            android:backgroundTint="@color/white"
+            android:elevation="10dp">
 
             <Button
                 android:id="@+id/kitchen"
@@ -399,4 +273,131 @@
     android:fontFamily="@font/poppins_semibold"
     android:textAllCaps="false"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/containerP1"
+            android:layout_width="112dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="810dp"
+            android:background="@drawable/quick_profile"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="10dp">
+
+            <Button
+                android:id="@+id/P1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="false" />
+
+            <Switch
+                android:id="@+id/switchControl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:checked="true"
+                android:scaleX="1.1"
+                android:track="@drawable/track" />
+
+            <TextView
+                android:id="@+id/tvP1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-18dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="sleeping"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/containerP2"
+            android:layout_width="112dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="810dp"
+            android:background="@drawable/quick_profile"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="10dp">
+
+            <Button
+                android:id="@+id/P2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="false" />
+
+            <Switch
+                android:id="@+id/switchControl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:checked="false"
+                android:scaleX="1.1"
+                android:track="@drawable/track" />
+
+            <TextView
+                android:id="@+id/tvP2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-18dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="morning"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/containerP3"
+            android:layout_width="112dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="810dp"
+            android:background="@drawable/quick_profile"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="10dp">
+
+            <Button
+                android:id="@+id/P3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="false" />
+
+            <Switch
+                android:id="@+id/switchControl3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:checked="true"
+                android:scaleX="1.1"
+                android:track="@drawable/track" />
+
+            <TextView
+                android:id="@+id/tvP3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-18dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Leaving"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+        </FrameLayout>
+    </RelativeLayout>
 </RelativeLayout>

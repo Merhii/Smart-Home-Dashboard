@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/login">
+    android:background="#F5F5F5">
 
     <Button
         android:id="@+id/Signup"
@@ -147,8 +147,9 @@
         android:text="@string/google"
         android:textAllCaps="false"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:paddingStart="10dp"
+        android:backgroundTint="@color/loginbtn"
     />
 
     <!--    <TextView-->
