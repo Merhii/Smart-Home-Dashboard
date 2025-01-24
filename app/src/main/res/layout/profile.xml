@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A8D3BC"
-    android:padding="16dp">
+    android:background="#F5F5F5"
+   >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,22 +42,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rooms"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/poppins_bold"
+            android:background="#6A66A3"
+            android:padding="5dp" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Room"
             android:textSize="16sp"
             android:textColor="#000000"
             android:fontFamily="@font/poppins_bold"
-            android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#DDD8B8"
-            android:padding="8dp" />
-        <TextView
-            android:layout_gravity="start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Room"
-            android:textSize="14sp"
-            android:textColor="#000000"
-            android:fontFamily="@font/poppins_bold"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"/>
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"/>
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,52 +68,52 @@
                 android:orientation="horizontal"
                 android:gravity="center">
                 <FrameLayout
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:layout_height="69dp"
                     android:layout_margin="8dp">
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/quick_profile"
-                        android:backgroundTint="#84A9C0" />
+                        android:backgroundTint="#B9B7CF" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Living Room"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="16sp"
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center" />
                 </FrameLayout>
                 <FrameLayout
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:layout_height="69dp"
                     android:layout_margin="8dp">
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/quick_profile"
-                        android:backgroundTint="#84A9C0" />
+                        android:backgroundTint="#B9B7CF" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Bedroom"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="16sp"
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center" />
                 </FrameLayout>
                 <FrameLayout
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:layout_height="69dp"
                     android:layout_margin="8dp">
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/quick_profile"
-                        android:backgroundTint="#84A9C0" />
+                        android:backgroundTint="#B9B7CF" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -123,7 +122,7 @@
                         android:gravity="center"
                         android:text="Bathroom"
                         android:textColor="#000000"
-                        android:textSize="12sp" />
+                        android:textSize="16sp" />
                 </FrameLayout>
                 <FrameLayout
                     android:layout_width="90dp"
@@ -133,14 +132,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/quick_profile"
-                        android:backgroundTint="#84A9C0" />
+                        android:backgroundTint="#B9B7CF" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Kitchen"
                         android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:textSize="16sp"
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center" />
                 </FrameLayout>
@@ -150,55 +149,123 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Automation"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/poppins_bold"
+            android:background="#6A66A3"
+            android:padding="5dp" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Automation"
             android:textSize="16sp"
             android:textColor="#000000"
             android:fontFamily="@font/poppins_bold"
-            android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#DDD8B8"
-            android:padding="8dp" />
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="69dp"
+                android:layout_margin="8dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/quick_profile"
+                    android:backgroundTint="#B9B7CF" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="sleeping"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="69dp"
+                android:layout_margin="8dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/quick_profile"
+                    android:backgroundTint="#B9B7CF" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="morning"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="69dp"
+                android:layout_margin="8dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/quick_profile"
+                    android:backgroundTint="#B9B7CF" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="leaving"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="90dp"
+                android:layout_height="69dp"
+                android:layout_margin="8dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/quick_profile"
+                    android:backgroundTint="#B9B7CF" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="evening"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center" />
+            </FrameLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account and Security"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/poppins_bold"
+            android:background="#6A66A3"
+            android:padding="5dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add Automation"
-                android:textSize="14sp"
-                android:textColor="#000000"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginBottom="8dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="View Automations"
-                android:textSize="14sp"
-                android:textColor="#000000"
-                android:fontFamily="@font/poppins_bold"
-                android:layout_marginBottom="16dp" />
-        </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Accounts and Security"
-            android:textSize="16sp"
-            android:textColor="#000000"
-            android:fontFamily="@font/poppins_bold"
-            android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#DDD8B8"
-            android:padding="8dp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp">
+            android:layout_marginLeft="5dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Change Email"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginBottom="8dp" />
@@ -206,7 +273,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Change Password"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginBottom="8dp" />
@@ -214,7 +281,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Logout"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginBottom="8dp" />
@@ -222,7 +289,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Disable"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginBottom="16dp" />
