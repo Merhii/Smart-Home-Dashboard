@@ -34,6 +34,8 @@
         <activity android:name=".BathroomActivity"/>
         <activity android:name=".KitchenActivity"/>
         <activity android:name=".ProfileActivity"/>
+        <activity android:name=".GarageActivity"/>
+        <activity android:name=".EntranceActivity"/>
     </application>
 
 </manifest>

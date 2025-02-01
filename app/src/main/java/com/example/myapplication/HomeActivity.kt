@@ -37,6 +37,8 @@ class HomeActivity : ComponentActivity() {
         var bed= findViewById<Button>(R.id.bed)
         var bath= findViewById<Button>(R.id.bath)
         var kitchen= findViewById<Button>(R.id.kitchen)
+        var entrance= findViewById<Button>(R.id.entrance)
+        var garage= findViewById<Button>(R.id.garage)
 var username = intent.getStringExtra("username")
         name.text = "$username's Home"
         notification.setOnClickListener {
@@ -66,6 +68,17 @@ var username = intent.getStringExtra("username")
             intent.putExtra("loc", "Kitchen")
             startActivity(intent)
         }
+        entrance.setOnClickListener{
+            val intent = Intent(this@HomeActivity, EntranceActivity::class.java)
+            intent.putExtra("loc", "Entrance")
+            startActivity(intent)
+        }
+        garage.setOnClickListener{
+            val intent = Intent(this@HomeActivity, GarageActivity::class.java)
+            intent.putExtra("loc", "Garage")
+            startActivity(intent)
+        }
+
     }
     private fun showNotificationDialog() {
         // Inflate the custom dialog layout
