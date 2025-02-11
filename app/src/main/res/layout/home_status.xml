@@ -384,8 +384,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:clickable="true"
+                android:clickable="false"
                 android:focusable="false" />
+
 
             <Switch
                 android:id="@+id/switchControl1"
@@ -424,8 +425,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:clickable="true"
+                android:clickable="false"
                 android:focusable="false" />
+
 
             <Switch
                 android:id="@+id/switchControl2"
@@ -464,8 +466,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:clickable="true"
+                android:clickable="false"
                 android:focusable="false" />
+
 
             <Switch
                 android:id="@+id/switchControl3"
