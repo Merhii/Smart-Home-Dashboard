@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:thumbTint="#000000"
-                android:track="@drawable/track"/>
+                android:track="@drawable/track" />
         </LinearLayout>
 
 

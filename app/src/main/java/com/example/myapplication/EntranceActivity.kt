@@ -22,6 +22,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+private lateinit var switchAC: Switch
+
 
 
 class EntranceActivity : ComponentActivity() {
@@ -29,7 +31,35 @@ class EntranceActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.entrance)
+        switchAC = findViewById(R.id.switchAC)
 
+        switchAC.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // Switch turned ON -> Call LED ON API
+                apiService.turnOnLed().enqueue(object : Callback<String> {
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        Toast.makeText(applicationContext, "LED ON", Toast.LENGTH_SHORT).show()
+                    }
 
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        Toast.makeText(applicationContext, "Failed to connect", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                })
+            } else {
+                // Switch turned OFF -> Call LED OFF API
+                apiService.turnOffLed().enqueue(object : Callback<String> {
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        Toast.makeText(applicationContext, "LED OFF", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        Toast.makeText(applicationContext, "Failed to connect", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                })
+            }
+
+        }
     }
 }

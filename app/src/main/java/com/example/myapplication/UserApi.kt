@@ -58,4 +58,12 @@ fun registerUser(@Body registerUserDto: RegisterUserDto): Call<User>
         @Path("name") name: String,
         @Path("status") status: Int
     ): Call<Void>
+    @GET("led/on")
+    fun turnOnLed(): Call<String>
+
+    @GET("led/off")
+    fun turnOffLed(): Call<String>
+
+    @GET("led/status")
+    fun getLedStatus(): Call<String>
 }
