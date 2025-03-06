@@ -22,7 +22,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-private lateinit var switchAC: Switch
+private lateinit var switchLight: Switch
 
 
 
@@ -31,9 +31,9 @@ class EntranceActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.entrance)
-        switchAC = findViewById(R.id.switchAC)
+        switchLight = findViewById(R.id.switchLight)
 
-        switchAC.setOnCheckedChangeListener { _, isChecked ->
+        switchLight.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // Switch turned ON -> Call LED ON API
                 apiService.turnOnLed().enqueue(object : Callback<String> {

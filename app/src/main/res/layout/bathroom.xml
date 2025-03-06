@@ -26,41 +26,6 @@
         android:layout_below="@id/tvBathRoom"
         android:orientation="vertical"
         android:layout_marginTop="16dp">
-
-        <!-- Exhaust Fan Row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#B9B7CF"
-            android:padding="8dp"
-            android:elevation="4dp"
-            android:layout_gravity="center_vertical"
-            >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Exhaust Fan"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:fontFamily="@font/poppins_semibold"
-                android:gravity="center_vertical" />
-
-            <Switch
-                android:id="@+id/switchexhaust"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:thumbTint="#000000"
-                android:track="@drawable/track"/>
-        </LinearLayout>
-
-
-        <!-- lights -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,7 +55,7 @@
                 android:thumbTint="#000000"
                 android:track="@drawable/track"/>
         </LinearLayout>
-        <!-- Speaker Row -->
+        <!-- Water Heater -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -106,48 +71,67 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Speaker"
+                android:text="Water Heater"
                 android:textSize="20sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center_vertical" />
 
             <Switch
-                android:id="@+id/switchspeaker"
+                android:id="@+id/switchHeater"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:thumbTint="#000000"
                 android:track="@drawable/track"/>
         </LinearLayout>
+
+        <!-- Temperature Display Section -->
         <LinearLayout
+            android:id="@+id/temperatureContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#B9B7CF"
-            android:padding="8dp"
-            android:elevation="4dp"
-            android:layout_gravity="center_vertical">
+            android:backgroundTint="#D84315"
+            android:padding="16dp"
+            android:elevation="6dp"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Water pump"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:fontFamily="@font/poppins_semibold"
-                android:gravity="center_vertical" />
-
-            <Switch
-                android:id="@+id/switchpump"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:thumbTint="#000000"
-                android:track="@drawable/track"/>
+                android:text="Water Temperature"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Temperature Progress Bar -->
+            <ProgressBar
+                android:id="@+id/tempProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:max="50"
+                android:progress="0"
+                android:progressDrawable="@drawable/progress_bar_temperature"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Temperature Value -->
+            <TextView
+                android:id="@+id/tvTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-- °C"
+                android:textSize="32sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal"/>
         </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>
