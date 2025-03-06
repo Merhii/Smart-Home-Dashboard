@@ -27,7 +27,7 @@
         android:orientation="vertical"
         android:layout_marginTop="16dp">
 
-        <!-- AC Row -->
+        <!-- Main Lights -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,39 +39,26 @@
             android:elevation="4dp"
             android:layout_gravity="center_vertical">
 
-            <!-- AC Label -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="AC"
+                android:text="Main Lights"
                 android:textSize="20sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center_vertical" />
 
-            <!-- Temperature Controls -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="20dp"/>
-
-            <!-- Switch -->
             <Switch
-                android:id="@+id/switchAC"
+                android:id="@+id/switchlights1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:thumbTint="#000000"
-                android:track="@drawable/track"
-/>
+                android:track="@drawable/track"/>
         </LinearLayout>
 
-
-
-        <!-- purifier Row -->
+        <!-- Edge Lights -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,21 +68,20 @@
             android:backgroundTint="#B9B7CF"
             android:padding="8dp"
             android:elevation="4dp"
-            android:layout_gravity="center_vertical"
-            >
+            android:layout_gravity="center_vertical">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppins_semibold"
-                android:gravity="center_vertical"
-                android:text="Air purifier"
+                android:text="Edge Lights"
+                android:textSize="20sp"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center_vertical" />
 
             <Switch
-                android:id="@+id/switchpurifier"
+                android:id="@+id/switchlights2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -103,7 +89,7 @@
                 android:track="@drawable/track"/>
         </LinearLayout>
 
-        <!-- Curtain Row -->
+        <!-- Curtains -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -134,64 +120,109 @@
                 android:track="@drawable/track"/>
         </LinearLayout>
 
-        <!-- lights -->
         <LinearLayout
+            android:id="@+id/acContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="12dp"
             android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#B9B7CF"
-            android:padding="8dp"
+            android:backgroundTint="#ECEFF1"
             android:elevation="4dp"
-            android:layout_gravity="center_vertical">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Middle lights"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:fontFamily="@font/poppins_semibold"
-                android:gravity="center_vertical" />
-
+            <!-- AC ON/OFF Switch -->
             <Switch
-                android:id="@+id/switchlights1"
+                android:id="@+id/switchAC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:thumbTint="#000000"
-                android:track="@drawable/track"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal"
-            android:background="@drawable/rounded_boxes"
-            android:backgroundTint="#B9B7CF"
-            android:padding="8dp"
-            android:elevation="4dp"
-            android:layout_gravity="center_vertical">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Edge lights"
-                android:textSize="20sp"
+                android:text="Air Conditioning  "
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:checked="false"
                 android:textColor="#000000"
-                android:fontFamily="@font/poppins_semibold"
-                android:gravity="center_vertical" />
+                android:track="@drawable/track"
+                android:thumbTint="#000000"/>
 
-            <Switch
-                android:id="@+id/switchlights2"
+            <!-- Room Temperature Display -->
+            <TextView
+                android:id="@+id/tvRoomTemperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:thumbTint="#000000"
-                android:track="@drawable/track"/>
+                android:text="Room Temp: -- °C"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:layout_marginTop="8dp"/>
+
+            <!-- AC Mode Icon -->
+            <ImageView
+                android:id="@+id/acModeIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_ac_off"
+                android:layout_marginTop="6dp"/>
+
+            <!-- Set AC Temperature Display -->
+            <TextView
+                android:id="@+id/tvSetACTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Temp: 22°C"
+                android:textSize="22sp"
+                android:textColor="#1E88E5"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Temperature Adjustment Controls -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="6dp">
+
+                <Button
+                    android:id="@+id/btnDecreaseTemp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="-"
+                    android:textSize="20sp"
+                    android:backgroundTint="#B0BEC5"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/poppins_bold"
+                    android:enabled="false"/>
+
+                <SeekBar
+                    android:id="@+id/seekBarACTemp"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:min="16"
+                    android:max="30"
+                    android:progress="22"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:enabled="false"/>
+
+                <Button
+                    android:id="@+id/btnIncreaseTemp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="+"
+                    android:textSize="20sp"
+                    android:backgroundTint="#1E88E5"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/poppins_bold"
+                    android:enabled="false"/>
+            </LinearLayout>
         </LinearLayout>
+
+
+
     </LinearLayout>
 </RelativeLayout>
