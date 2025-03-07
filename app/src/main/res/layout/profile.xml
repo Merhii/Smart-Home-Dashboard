@@ -281,5 +281,73 @@
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginBottom="16dp" />
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contact Us"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/poppins_bold"
+            android:background="#6A66A3"
+            android:padding="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Name -->
+            <EditText
+                android:id="@+id/contact_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:textColorHint="#666666" />
+
+            <!-- Phone -->
+            <EditText
+                android:id="@+id/contact_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contact Phone"
+                android:padding="10dp"
+                android:inputType="phone"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:textColorHint="#666666"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Message -->
+            <EditText
+                android:id="@+id/contact_message"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:hint="Write your message..."
+                android:padding="10dp"
+
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:textColorHint="#666666"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Submit Button -->
+            <Button
+                android:id="@+id/contact_send"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:text="Send"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#6A66A3"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"/>
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
