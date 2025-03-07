@@ -23,9 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 
-private lateinit var ACswitch: Switch
+
 private lateinit var Lswitch: Switch
-private lateinit var BLswitch: Switch
 private lateinit var Cswitch: Switch
 
 
@@ -36,20 +35,9 @@ class BedroomActivity : ComponentActivity() {
         setContentView(R.layout.bedroom)
         val deviceLocation = intent.getStringExtra("loc")
 
-        ACswitch = findViewById(R.id.switchAC)
+
         Lswitch = findViewById(R.id.switchlights)
-        BLswitch = findViewById(R.id.switchlights1)
         Cswitch = findViewById(R.id.switchcurtains)
-
-        ACswitch.setOnCheckedChangeListener { _, isChecked ->
-            val status = if (isChecked) 1 else 0
-            // Call your API to update the status
-            println(status)
-
-            if (deviceLocation != null) {
-                updateDeviceStatus("AC", deviceLocation, status)
-            }
-        }
 
         Cswitch.setOnCheckedChangeListener { _, isChecked ->
             val status = if (isChecked) 1 else 0
@@ -58,16 +46,6 @@ class BedroomActivity : ComponentActivity() {
 
             if (deviceLocation != null) {
                 updateDeviceStatus("Curtains", deviceLocation, status)
-            }
-        }
-
-        BLswitch.setOnCheckedChangeListener { _, isChecked ->
-            val status = if (isChecked) 1 else 0
-            // Call your API to update the status
-            println(status)
-
-            if (deviceLocation != null) {
-                updateDeviceStatus("Bed Lamp", deviceLocation, status)
             }
         }
 
