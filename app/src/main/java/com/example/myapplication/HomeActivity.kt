@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.view.LayoutInflater
 import android.app.AlertDialog
+import android.content.Context
 import android.widget.ImageView
 import android.content.Intent
 import android.media.MediaPlayer
@@ -29,15 +30,22 @@ import retrofit2.http.GET
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-
+import android.widget.Switch
+import android.content.SharedPreferences
 
 class HomeActivity : ComponentActivity() {
     private var prayerTimings: PrayerTimesResponse? = null
     private var mediaPlayer: MediaPlayer? = null
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.home_status)
+
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("RoomState", Context.MODE_PRIVATE)
+
         // Fetch Prayer Times when app starts
         fetchPrayerTimes()
 
@@ -48,52 +56,127 @@ class HomeActivity : ComponentActivity() {
         var notification = findViewById<ImageView>(R.id.ivNotification)
         var living = findViewById<Button>(R.id.living)
         var name = findViewById<TextView>(R.id.tvHeader)
-        var bed= findViewById<Button>(R.id.bed)
-        var bath= findViewById<Button>(R.id.bath)
-        var kitchen= findViewById<Button>(R.id.kitchen)
-        var entrance= findViewById<Button>(R.id.entrance)
-        var garage= findViewById<Button>(R.id.garage)
-var username = intent.getStringExtra("username")
+        var bed = findViewById<Button>(R.id.bed)
+        var bath = findViewById<Button>(R.id.bath)
+        var kitchen = findViewById<Button>(R.id.kitchen)
+        var entrance = findViewById<Button>(R.id.entrance)
+        var garage = findViewById<Button>(R.id.garage)
+        var username = intent.getStringExtra("username")
         name.text = "$username's Home"
+
         notification.setOnClickListener {
             showNotificationDialog()
         }
-        profile.setOnClickListener{
+        profile.setOnClickListener {
             val intent = Intent(this@HomeActivity, ProfileActivity::class.java)
             startActivity(intent)
         }
-        living.setOnClickListener{
+        living.setOnClickListener {
             val intent = Intent(this@HomeActivity, LivingroomActivity::class.java)
             intent.putExtra("loc", "Living Room")
             startActivity(intent)
         }
-        bed.setOnClickListener{
+        bed.setOnClickListener {
             val intent = Intent(this@HomeActivity, BedroomActivity::class.java)
             intent.putExtra("loc", "Bed Room")
             startActivity(intent)
         }
-        bath.setOnClickListener{
+        bath.setOnClickListener {
             val intent = Intent(this@HomeActivity, BathroomActivity::class.java)
             intent.putExtra("loc", "Bath Room")
             startActivity(intent)
         }
-        kitchen.setOnClickListener{
+        kitchen.setOnClickListener {
             val intent = Intent(this@HomeActivity, KitchenActivity::class.java)
             intent.putExtra("loc", "Kitchen")
             startActivity(intent)
         }
-        entrance.setOnClickListener{
+        entrance.setOnClickListener {
             val intent = Intent(this@HomeActivity, EntranceActivity::class.java)
             intent.putExtra("loc", "Entrance")
             startActivity(intent)
         }
-        garage.setOnClickListener{
+        garage.setOnClickListener {
             val intent = Intent(this@HomeActivity, GarageActivity::class.java)
             intent.putExtra("loc", "Garage")
             startActivity(intent)
         }
 
+        // Set up listeners for Quick Profiles
+        val switchBed = findViewById<Switch>(R.id.switchControl1)
+        val switchEnergy = findViewById<Switch>(R.id.switchControl2)
+        val switchAway = findViewById<Switch>(R.id.switchControl3)
+
+        switchBed.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                activateBedProfile()
+            }
+        }
+
+        switchEnergy.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                activateEnergyProfile()
+            }
+        }
+
+        switchAway.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                activateAwayProfile()
+            }
+        }
     }
+
+    private fun activateBedProfile() {
+        // Turn off all lights and close curtains
+        RoomState.roomStates.forEach { (room, devices) ->
+            devices.forEach { (device, _) ->
+                when (device) {
+                    "Lights" -> {
+                        RoomState.roomStates[room]?.put(device, false)
+                        sharedPreferences.edit().putBoolean("${room}_Lights", false).apply()
+                    }
+                    "Curtains" -> {
+                        RoomState.roomStates[room]?.put(device, true)
+                        sharedPreferences.edit().putBoolean("${room}_Curtains", true).apply()
+                    }
+                }
+            }
+        }
+        notifyRooms()
+    }
+
+
+
+    private fun activateEnergyProfile() {
+        // Turn on all lights
+        RoomState.roomStates.forEach { (room, devices) ->
+            devices.forEach { (device, _) ->
+                if (device == "Lights") {
+                    RoomState.roomStates[room]?.put(device, true)
+                    sharedPreferences.edit().putBoolean("${room}_Lights", false).apply()
+                }
+            }
+        }
+        notifyRooms()
+    }
+
+    private fun activateAwayProfile() {
+        // Turn off all lights and close curtains
+        RoomState.roomStates.forEach { (room, devices) ->
+            devices.forEach { (device, _) ->
+                RoomState.roomStates[room]?.put(device, false)
+                sharedPreferences.edit().putBoolean("${room}_$device", false).apply()
+            }
+        }
+        notifyRooms()
+    }
+
+    private fun notifyRooms() {
+        // Broadcast an intent to notify room activities to refresh their UI
+        val intent = Intent("com.example.myapplication.ROOM_STATE_UPDATED")
+        sendBroadcast(intent)
+    }
+
     private fun showNotificationDialog() {
         // Inflate the custom dialog layout
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_notifications, null)
@@ -109,6 +192,7 @@ var username = intent.getStringExtra("username")
             dialog.dismiss()
         }
     }
+
     /** Fetch Adhan prayer times from API */
     private fun fetchPrayerTimes() {
         RetrofitInstance.prayerApi.getPrayerTimes().enqueue(object : Callback<PrayerTimesResponse> {
@@ -135,7 +219,6 @@ var username = intent.getStringExtra("username")
         })
     }
 
-
     /** ✅ Loop that checks Adhan time every 60 seconds (only when app is open) */
     private fun startAdhanCheckLoop() {
         lifecycleScope.launch {
@@ -145,7 +228,6 @@ var username = intent.getStringExtra("username")
             }
         }
     }
-
 
     /** ✅ Check if it's time for Adhan */
     private fun checkAdhanTime() {
@@ -181,7 +263,6 @@ var username = intent.getStringExtra("username")
             }
         }
     }
-
 
     /** ✅ Normalize Adhan time format */
     private fun normalizeTime(time: String): String {
@@ -222,7 +303,6 @@ var username = intent.getStringExtra("username")
         }
     }
 
-
     /** ✅ Play Adhan on phone or Bluetooth speaker */
     private fun playAdhanAudio() {
         mediaPlayer?.release() // Release previous media player instance if playing
@@ -233,4 +313,3 @@ var username = intent.getStringExtra("username")
         }
     }
 }
-

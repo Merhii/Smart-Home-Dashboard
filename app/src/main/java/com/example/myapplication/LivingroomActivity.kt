@@ -1,9 +1,15 @@
 package com.example.myapplication
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
@@ -11,6 +17,7 @@ import com.example.myapplication.RetrofitInstance.apiService
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
+import android.content.SharedPreferences
 
 private lateinit var ACswitch: Switch
 private lateinit var Curswitch: Switch
@@ -25,15 +32,35 @@ private lateinit var tvSetACTemperature: TextView
 private lateinit var tvRoomTemperature: TextView
 
 class LivingroomActivity : ComponentActivity() {
+    private val roomStateReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            // Refresh UI based on updated RoomState
+            ACswitch.isChecked = sharedPreferences.getBoolean("Livingroom_AC", false)
+            Curswitch.isChecked = sharedPreferences.getBoolean("Livingroom_Curtains", false)
+            MLswitch.isChecked = sharedPreferences.getBoolean("Livingroom_MainLights", false)
+            ELswitch.isChecked = sharedPreferences.getBoolean("Livingroom_EdgeLights", false)
+        }
+    }
+
+    private lateinit var sharedPreferences: SharedPreferences
     private val client = OkHttpClient()
     private var isAcOn: Boolean = false
     private var setTemperature: Int = 22
     private var roomTemperature: Int = 22
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.livingroom)
+
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("RoomState", Context.MODE_PRIVATE)
+
+        // Register the BroadcastReceiver
+        registerReceiver(roomStateReceiver, IntentFilter("com.example.myapplication.ROOM_STATE_UPDATED"),
+            RECEIVER_NOT_EXPORTED
+        )
 
         val deviceLocation = intent.getStringExtra("loc")
 
@@ -49,33 +76,48 @@ class LivingroomActivity : ComponentActivity() {
         tvSetACTemperature = findViewById(R.id.tvSetACTemperature)
         tvRoomTemperature = findViewById(R.id.tvRoomTemperature)
 
+        // Restore switch states from SharedPreferences
+        ACswitch.isChecked = sharedPreferences.getBoolean("Livingroom_AC", false)
+        Curswitch.isChecked = sharedPreferences.getBoolean("Livingroom_Curtains", false)
+        MLswitch.isChecked = sharedPreferences.getBoolean("Livingroom_Lights", false)
+        ELswitch.isChecked = sharedPreferences.getBoolean("Livingroom_Lights", false)
+
         // ✅ AC Switch controls ON/OFF logic
         ACswitch.setOnCheckedChangeListener { _, isChecked ->
             isAcOn = isChecked
+            sharedPreferences.edit().putBoolean("Livingroom_AC", isChecked).apply()
             updateAcUI()
             updateDeviceStatus("AC", deviceLocation ?: "Living Room", if (isAcOn) 1 else 0)
         }
 
         // ✅ MLswitch controls a request (previously missing)
         MLswitch.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().putBoolean("Livingroom_Lights", isChecked).apply()
             if (isChecked) {
                 sendRequest("http://192.168.1.111/on")
             } else {
                 sendRequest("http://192.168.1.111/off")
             }
-        }
-
-        Curswitch.setOnCheckedChangeListener { _, isChecked ->
             val status = if (isChecked) 1 else 0
             if (deviceLocation != null) {
-                updateDeviceStatus("Curtains", deviceLocation, status)
+                updateDeviceStatus("Main Lights", deviceLocation, status)
             }
         }
 
+        // ✅ ELswitch controls Edge Lights
         ELswitch.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().putBoolean("Livingroom_Lights", isChecked).apply()
             val status = if (isChecked) 1 else 0
             if (deviceLocation != null) {
                 updateDeviceStatus("Edge Lights", deviceLocation, status)
+            }
+        }
+
+        Curswitch.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().putBoolean("Livingroom_Curtains", isChecked).apply()
+            val status = if (isChecked) 1 else 0
+            if (deviceLocation != null) {
+                updateDeviceStatus("Curtains", deviceLocation, status)
             }
         }
 
@@ -97,6 +139,12 @@ class LivingroomActivity : ComponentActivity() {
 
         // ✅ Simulate room temperature updates
         simulateTemperatureUpdates()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Unregister the BroadcastReceiver
+        unregisterReceiver(roomStateReceiver)
     }
 
     private fun updateAcUI() {

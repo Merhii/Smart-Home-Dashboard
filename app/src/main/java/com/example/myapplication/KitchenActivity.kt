@@ -1,66 +1,81 @@
 package com.example.myapplication
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Switch
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import androidx.lifecycle.lifecycleScope
-import com.example.myapplication.DTO.RegisterUserDto
-import com.example.myapplication.Entity.User
-import com.example.myapplication.RetrofitInstance.apiService
+import androidx.annotation.RequiresApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-
-
+import android.content.SharedPreferences
+import com.example.myapplication.RetrofitInstance.apiService
 
 private lateinit var Lswitch: Switch
 
 class KitchenActivity : ComponentActivity() {
+    private val roomStateReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            // Refresh UI based on updated RoomState
+            Lswitch.isChecked = sharedPreferences.getBoolean("Kitchen_Lights", false)
+        }
+    }
+
+    private lateinit var sharedPreferences: SharedPreferences
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.kitchen)
+
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("RoomState", Context.MODE_PRIVATE)
+
+        // Register the BroadcastReceiver
+        registerReceiver(roomStateReceiver, IntentFilter("com.example.myapplication.ROOM_STATE_UPDATED"),
+            RECEIVER_NOT_EXPORTED
+        )
+
         val deviceLocation = intent.getStringExtra("loc")
         Lswitch = findViewById(R.id.switchlights)
 
-        Lswitch.setOnCheckedChangeListener { _, isChecked ->
-            val status = if (isChecked) 1 else 0
-            // Call your API to update the status
-            println(status)
+        // Restore switch state from SharedPreferences
+        Lswitch.isChecked = sharedPreferences.getBoolean("Kitchen_Lights", false)
 
+        Lswitch.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().putBoolean("Kitchen_Lights", isChecked).apply()
+            val status = if (isChecked) 1 else 0
             if (deviceLocation != null) {
                 updateDeviceStatus("Lights", deviceLocation, status)
             }
         }
-
     }
 
-private fun updateDeviceStatus(deviceName: String, deviceLocation: String, status: Int) {
-    // Launch a coroutine to make the network call asynchronously
-    CoroutineScope(Dispatchers.Main).launch {
-        try {
-            val response = apiService.updateDeviceStatus(deviceLocation, deviceName, status)
+    override fun onDestroy() {
+        super.onDestroy()
+        // Unregister the BroadcastReceiver
+        unregisterReceiver(roomStateReceiver)
+    }
 
-            if (response.isExecuted) {
+    private fun updateDeviceStatus(deviceName: String, deviceLocation: String, status: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val response = apiService.updateDeviceStatus(deviceLocation, deviceName, status)
+                if (response.isExecuted) {
+                    Toast.makeText(this@KitchenActivity, "$deviceName status updated successfully", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@KitchenActivity, "Failed to update device status", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
                 Toast.makeText(this@KitchenActivity, "$deviceName status updated successfully", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this@KitchenActivity, "Failed to update device status", Toast.LENGTH_SHORT).show()
             }
-        } catch (e: Exception) {
-//                Toast.makeText(this@LivingroomActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-            Toast.makeText(this@KitchenActivity, "$deviceName status updated successfully", Toast.LENGTH_SHORT).show()
         }
     }
-}
 }

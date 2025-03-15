@@ -404,7 +404,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="-18dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="sleeping"
+                android:text="Bedtime"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 android:textSize="16sp" />
@@ -445,7 +445,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="-18dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="morning"
+                android:text="Energy save"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 android:textSize="16sp" />
@@ -486,7 +486,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="-18dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Leaving"
+                android:text="Away"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 android:textSize="16sp" />
