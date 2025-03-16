@@ -298,7 +298,7 @@
             android:padding="16dp">
 
             <!-- Name -->
-            <EditText
+            <TextView
                 android:id="@+id/contact_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

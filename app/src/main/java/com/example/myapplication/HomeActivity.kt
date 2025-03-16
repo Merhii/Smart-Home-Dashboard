@@ -69,6 +69,7 @@ class HomeActivity : ComponentActivity() {
         }
         profile.setOnClickListener {
             val intent = Intent(this@HomeActivity, ProfileActivity::class.java)
+            intent.putExtra("Name",username)
             startActivity(intent)
         }
         living.setOnClickListener {
