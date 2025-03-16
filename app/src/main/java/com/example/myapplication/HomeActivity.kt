@@ -148,13 +148,9 @@ class HomeActivity : ComponentActivity() {
 
 
     private fun activateEnergyProfile() {
-        // Turn on all lights
         RoomState.roomStates.forEach { (room, devices) ->
             devices.forEach { (device, _) ->
-                if (device == "Lights") {
-                    RoomState.roomStates[room]?.put(device, true)
-                    sharedPreferences.edit().putBoolean("${room}_Lights", false).apply()
-                }
+                //to be thought of
             }
         }
         notifyRooms()
