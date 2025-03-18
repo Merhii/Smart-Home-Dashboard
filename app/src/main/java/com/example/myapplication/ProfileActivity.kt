@@ -10,8 +10,8 @@ class ProfileActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.profile)
-        var username = intent.getStringExtra("Name")
-        var name = findViewById<TextView>(R.id.contact_name)
+        val username = intent.getStringExtra("Name") ?: "Default Name"  // You can replace "Default Name" with any default value you prefer
+        var name = findViewById<TextView>(R.id.name)
         name.text =  "$username"
     }
 }

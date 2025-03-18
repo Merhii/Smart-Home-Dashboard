@@ -22,14 +22,18 @@
                 android:src="@drawable/account_circle_37dp_0_fill0_wght400_grad0_opsz40"
                 android:contentDescription="Profile Icon"
                 app:tint="#000000" />
+
             <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
-                android:textSize="18sp"
-                android:textColor="#000000"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_bold"
-                android:layout_marginTop="8dp" />
+                android:text=""
+                android:hint="Name"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

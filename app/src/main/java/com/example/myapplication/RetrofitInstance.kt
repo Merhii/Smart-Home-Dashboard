@@ -14,7 +14,7 @@ var gson: Gson = GsonBuilder()
 object RetrofitInstance {
     // User API (Your Localhost API)
     private val retrofit = Retrofit.Builder()
-        .baseUrl("http://10.0.2.2:8080") // Localhost for user-related APIs
+        .baseUrl("http://10.0.2.2:8080")  // Localhost for user-related APIs
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 

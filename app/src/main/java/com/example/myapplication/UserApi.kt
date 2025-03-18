@@ -19,8 +19,8 @@ import retrofit2.http.Query
 interface UserApi {
 //    @GET("/getAll")
 //   suspend fun getUsers() : Response<List<User>>
-@POST("/auth/signup")
-fun registerUser(@Body registerUserDto: RegisterUserDto): Call<User>
+    @POST("/auth/signup")
+    fun registerUser(@Body registerUserDto: RegisterUserDto): Call<User>
 
     @POST("/auth/verify")
     fun verifiyUser(@Body verifyUserDto: VerifyUserDto): Call<String>
