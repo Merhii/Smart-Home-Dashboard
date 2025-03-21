@@ -156,134 +156,6 @@
                         android:textAllCaps="false" />
                 </FrameLayout>
                 <!-- Button 1: Living -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <FrameLayout
-                        android:id="@+id/containerP1"
-                        android:layout_width="112dp"
-                        android:layout_height="80dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="770dp"
-                        android:background="@drawable/quick_profile"
-                        android:backgroundTint="#FFFFFF"
-                        android:elevation="10dp">
-
-                        <Button
-                            android:id="@+id/P1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/transparent"
-                            android:clickable="false"
-                            android:focusable="false" />
-
-
-                        <Switch
-                            android:id="@+id/switchControl1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="20dp"
-                            android:scaleX="1.1"
-                            android:track="@drawable/track" />
-
-                        <TextView
-                            android:id="@+id/tvP1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="-18dp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:text="Bedtime"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:id="@+id/containerP2"
-                        android:layout_width="112dp"
-                        android:layout_height="80dp"
-                        android:layout_marginStart="140dp"
-                        android:layout_marginTop="770dp"
-                        android:background="@drawable/quick_profile"
-                        android:backgroundTint="#FFFFFF"
-                        android:elevation="10dp">
-
-                        <Button
-                            android:id="@+id/P2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/transparent"
-                            android:clickable="false"
-                            android:focusable="false" />
-
-
-                        <Switch
-                            android:id="@+id/switchControl2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="20dp"
-                            android:scaleX="1.1"
-                            android:track="@drawable/track" />
-
-                        <TextView
-                            android:id="@+id/tvP2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="-18dp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:text="Energy save"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:id="@+id/containerP3"
-                        android:layout_width="112dp"
-                        android:layout_height="80dp"
-                        android:layout_marginStart="260dp"
-                        android:layout_marginTop="770dp"
-                        android:background="@drawable/quick_profile"
-                        android:backgroundTint="#FFFFFF"
-                        android:elevation="10dp">
-
-                        <Button
-                            android:id="@+id/P3"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/transparent"
-                            android:clickable="false"
-                            android:focusable="false" />
-
-
-                        <Switch
-                            android:id="@+id/switchControl3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="20dp"
-                            android:scaleX="1.1"
-                            android:track="@drawable/track" />
-
-                        <TextView
-                            android:id="@+id/tvP3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="-18dp"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:text="Away"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="16sp" />
-                    </FrameLayout>
-                </RelativeLayout>
-
                 <FrameLayout
                     android:id="@+id/containerLiving"
                     android:layout_width="160dp"
@@ -493,4 +365,131 @@
         android:fontFamily="@font/poppins_semibold"
         android:textAllCaps="false"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/containerP1"
+            android:layout_width="112dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="770dp"
+            android:background="@drawable/quick_profile"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="10dp">
+
+            <Button
+                android:id="@+id/P1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:focusable="false" />
+
+
+            <Switch
+                android:id="@+id/switchControl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:scaleX="1.1"
+                android:track="@drawable/track" />
+
+            <TextView
+                android:id="@+id/tvP1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-18dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Bedtime"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/containerP2"
+            android:layout_width="112dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="770dp"
+            android:background="@drawable/quick_profile"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="10dp">
+
+            <Button
+                android:id="@+id/P2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:focusable="false" />
+
+
+            <Switch
+                android:id="@+id/switchControl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:scaleX="1.1"
+                android:track="@drawable/track" />
+
+            <TextView
+                android:id="@+id/tvP2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-18dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Energy save"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/containerP3"
+            android:layout_width="112dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="770dp"
+            android:background="@drawable/quick_profile"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="10dp">
+
+            <Button
+                android:id="@+id/P3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:focusable="false" />
+
+
+            <Switch
+                android:id="@+id/switchControl3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:scaleX="1.1"
+                android:track="@drawable/track" />
+
+            <TextView
+                android:id="@+id/tvP3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-18dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Away"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </FrameLayout>
+    </RelativeLayout>
 </RelativeLayout>
