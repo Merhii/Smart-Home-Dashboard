@@ -30,7 +30,6 @@ private lateinit var seekBarACTemp: SeekBar
 private lateinit var acModeIcon: ImageView
 private lateinit var tvSetACTemperature: TextView
 private lateinit var tvRoomTemperature: TextView
-
 class LivingroomActivity : ComponentActivity() {
     private val roomStateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -94,9 +93,9 @@ class LivingroomActivity : ComponentActivity() {
         MLswitch.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("Livingroom_Lights", isChecked).apply()
             if (isChecked) {
-                sendRequest("http://192.168.1.111/on")
+                sendRequest(IP.ip+"/on")
             } else {
-                sendRequest("http://192.168.1.111/off")
+                sendRequest(IP.ip+"/off")
             }
             val status = if (isChecked) 1 else 0
             if (deviceLocation != null) {

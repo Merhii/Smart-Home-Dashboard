@@ -17,7 +17,7 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyApplication">
@@ -30,7 +30,7 @@
         <activity android:name=".OtpVerificationActivity"/>
         <activity android:name=".SignupActivity"/>
         <activity android:name=".LoginActivity"/>
-        <activity android:name=".HomeActivity"/>
+<!--        <activity android:name=".HomeActivity"/>-->
         <activity android:name=".LivingroomActivity"/>
         <activity android:name=".BedroomActivity"/>
         <activity android:name=".BathroomActivity"/>
