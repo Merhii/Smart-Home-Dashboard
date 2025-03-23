@@ -18,6 +18,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
 import android.content.SharedPreferences
+import kotlin.math.log
 
 private lateinit var ACswitch: Switch
 private lateinit var Curswitch: Switch
@@ -93,9 +94,9 @@ class LivingroomActivity : ComponentActivity() {
         MLswitch.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("Livingroom_Lights", isChecked).apply()
             if (isChecked) {
-                sendRequest(IP.ip+"/on")
+                sendRequest(IP.ledon)
             } else {
-                sendRequest(IP.ip+"/off")
+                sendRequest(IP.ledoff)
             }
             val status = if (isChecked) 1 else 0
             if (deviceLocation != null) {
@@ -112,11 +113,17 @@ class LivingroomActivity : ComponentActivity() {
             }
         }
 
-        Curswitch.setOnCheckedChangeListener { _, isChecked ->
+        Curswitch.setOnCheckedChangeListener{ _, isChecked ->
             sharedPreferences.edit().putBoolean("Livingroom_Curtains", isChecked).apply()
+            if (isChecked) {
+                sendRequest(IP.curtson)
+                println(IP.curtson)
+            } else {
+                sendRequest(IP.curtsoff)
+            }
             val status = if (isChecked) 1 else 0
             if (deviceLocation != null) {
-                updateDeviceStatus("Curtains", deviceLocation, status)
+                updateDeviceStatus("curts ", deviceLocation, status)
             }
         }
 
