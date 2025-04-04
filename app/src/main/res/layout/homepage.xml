@@ -1,23 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#84A9C0">
 
-    <!-- Logo -->
-    <TextView
+    <!-- Logo at the top, centered -->
+    <ImageView
         android:id="@+id/logo"
-        android:layout_width="60dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="24dp"
-        android:text="LOGO"
-        android:textColor="#000000"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/poppins_regular"/>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="0dp"
+    android:layout_marginStart="155dp"
+        android:src="@drawable/koala" />
 
+
+    <TextView
+        android:id="@+id/koalaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_marginStart="167dp"
+        android:layout_marginTop="-30dp"
+
+    android:text="KOALA"
+    android:textColor="#000000"
+    android:textSize="22sp"
+    android:textStyle="bold"
+    android:fontFamily="@font/poppins_bold" />
 
     <!-- Central text -->
     <!-- First TextView -->
@@ -53,7 +62,6 @@
         android:scaleType="centerCrop"
         />
 
-
     <!-- Decorative shapes -->
     <View
         android:layout_width="120dp"
@@ -63,7 +71,6 @@
         android:background="@drawable/rounded_rect"
         android:backgroundTint="#49E1D4"/>
 
-
     <View
         android:layout_width="52dp"
         android:layout_height="52dp"
@@ -71,6 +78,7 @@
         android:layout_marginTop="733dp"
         android:background="@drawable/circle"
         android:backgroundTint="#7A2C9F"/>
+
     <View
         android:layout_width="120dp"
         android:layout_height="108dp"
@@ -78,6 +86,7 @@
         android:layout_marginTop="809dp"
         android:background="@drawable/rounded_rect"
         android:backgroundTint="#B1BEFE"/>
+
     <!-- Start Button -->
     <Button
         android:id="@+id/homeButton"

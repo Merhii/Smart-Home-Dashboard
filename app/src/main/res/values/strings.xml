@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Koala</string>
 
     <string name="bold_text">By Signing up you agree to our <b>Terms of Use</b> and <b>Privacy Policy</b></string>
     <string name="google">Google</string>
