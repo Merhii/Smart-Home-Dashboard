@@ -32,6 +32,18 @@ import java.util.Date
 import java.util.Locale
 import android.widget.Switch
 import android.content.SharedPreferences
+import android.view.View
+import android.widget.LinearLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.Request
+import java.io.IOException
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
+import android.view.Gravity
+import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 
 class HomeActivity : ComponentActivity() {
     private var prayerTimings: PrayerTimesResponse? = null
@@ -63,6 +75,7 @@ class HomeActivity : ComponentActivity() {
         var garage = findViewById<Button>(R.id.garage)
         var username = intent.getStringExtra("username")
         name.text = "$username's Home"
+
 
         notification.setOnClickListener {
             showNotificationDialog()
@@ -102,7 +115,7 @@ class HomeActivity : ComponentActivity() {
             intent.putExtra("loc", "Garage")
             startActivity(intent)
         }
-
+        updateNotificationDot(true)
         // Set up listeners for Quick Profiles
         val switchBed = findViewById<Switch>(R.id.switchControl1)
         val switchEnergy = findViewById<Switch>(R.id.switchControl2)
@@ -178,6 +191,8 @@ class HomeActivity : ComponentActivity() {
         // Inflate the custom dialog layout
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_notifications, null)
         // Create the AlertDialog
+        addNotification("Rain detected. Laundry retracted", dialogView)
+        addNotification("Dayraki GAY. Laundry retracted", dialogView)
         val dialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .create()
@@ -189,6 +204,102 @@ class HomeActivity : ComponentActivity() {
             dialog.dismiss()
         }
     }
+    private fun addNotification(notificationText: String, dialogView: View) {
+        val notificationListLayout: LinearLayout = dialogView.findViewById(R.id.notificationListLayout)
+        val tvNoNotifications: TextView = dialogView.findViewById(R.id.tvNoNotifications)
+
+        // Hide the "No notifications" message with fade out if visible
+        if (tvNoNotifications.visibility == View.VISIBLE) {
+            tvNoNotifications.animate()
+                .alpha(0f)
+                .setDuration(200)
+                .withEndAction {
+                    tvNoNotifications.visibility = View.GONE
+                    tvNoNotifications.alpha = 1f
+                }
+                .start()
+        }
+
+        // Card container
+        val cardLayout = FrameLayout(this)
+        val container = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(16, 16, 16, 16)
+            background = ContextCompat.getDrawable(this@HomeActivity, R.drawable.bg_notification_card)
+            elevation = 8f
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                setMargins(0, 0, 0, 16)
+            }
+        }
+
+        // TextView inside card
+        val textView = TextView(this).apply {
+            text = notificationText
+            textSize = 14f
+            setTextColor(Color.BLACK)
+            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+        }
+
+        // Red X Button
+        val closeBtn = ImageView(this).apply {
+            setImageResource(android.R.drawable.ic_menu_close_clear_cancel)
+            setColorFilter(Color.RED)
+            setPadding(16, 0, 0, 0)
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = Gravity.CENTER_VERTICAL
+            }
+
+            setOnClickListener {
+                // Animate removal
+                cardLayout.animate()
+                    .alpha(0f)
+                    .translationX(100f)
+                    .setDuration(300)
+                    .withEndAction {
+                        notificationListLayout.removeView(cardLayout)
+
+                        // Show fallback message if empty
+                        if (notificationListLayout.childCount == 0) {
+                            tvNoNotifications.alpha = 0f
+                            tvNoNotifications.visibility = View.VISIBLE
+                            tvNoNotifications.animate().alpha(1f).setDuration(300).start()
+
+                                updateNotificationDot(false)
+
+
+                        }
+                    }
+                    .start()
+            }
+        }
+
+        // Add views
+        container.addView(textView)
+        container.addView(closeBtn)
+        cardLayout.addView(container)
+
+        // Add to layout with fade in
+        cardLayout.alpha = 0f
+        notificationListLayout.addView(cardLayout)
+        cardLayout.animate().alpha(1f).setDuration(300).start()
+    }
+
+
+    private fun updateNotificationDot(hasNew: Boolean) {
+        val dotView: View = findViewById(R.id.ivNotificationDot)
+        dotView.visibility = if (hasNew) View.VISIBLE else View.GONE
+
+    }
+
+
+
+
 
     /** Fetch Adhan prayer times from API */
     private fun fetchPrayerTimes() {

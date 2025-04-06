@@ -24,7 +24,6 @@ private lateinit var ACswitch: Switch
 private lateinit var Curswitch: Switch
 private lateinit var MLswitch: Switch
 private lateinit var ELswitch: Switch
-
 private lateinit var btnIncreaseTemp: Button
 private lateinit var btnDecreaseTemp: Button
 private lateinit var seekBarACTemp: SeekBar

@@ -15,24 +15,30 @@
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"
         android:layout_marginBottom="16dp" />
+    <TextView
+        android:id="@+id/tvNoNotifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="No notifications at the moment."
+        android:textSize="14sp" />
     <!-- Notification List -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="#EFEFEF"
         android:padding="8dp">
+
         <LinearLayout
+            android:id="@+id/notificationListLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No notifications at the moment."
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp" />
+
+
         </LinearLayout>
     </ScrollView>
+
     <Button
         android:id="@+id/btnCloseDialog"
         android:layout_width="match_parent"
