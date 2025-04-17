@@ -53,7 +53,6 @@ class LivingroomActivity : ComponentActivity() {
     private var acOn = false
 
     private val MAIN_LIGHTS_KWH_PER_5MIN = 0.00083f
-    private val EDGE_LIGHTS_KWH_PER_5MIN = 0.00083f
     private val AC_KWH_PER_5MIN = 0.166f // assuming 2kW AC
 
     private val TOTAL_CONSUMPTION_KEY = "TotalConsumption"

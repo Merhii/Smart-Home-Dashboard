@@ -52,7 +52,7 @@ class HomeActivity : ComponentActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var updateHandler: Handler
-    private val updateInterval = 5_000L // 5 seconds
+    private val updateInterval = 30000L // 30 sec
     private val updateRunnable = object : Runnable {
         override fun run() {
             updateElectricityUI()
@@ -154,7 +154,7 @@ class HomeActivity : ComponentActivity() {
         // Set up listeners for Quick Profiles
         val switchBed = findViewById<Switch>(R.id.switchControl1)
         val switchEnergy = findViewById<Switch>(R.id.switchControl2)
-        val switchAway = findViewById<Switch>(R.id.switchControl3)
+        val switchMorning = findViewById<Switch>(R.id.switchControl3)
 
         switchBed.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
@@ -168,9 +168,9 @@ class HomeActivity : ComponentActivity() {
             }
         }
 
-        switchAway.setOnCheckedChangeListener { _, isChecked ->
+        switchMorning.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                activateAwayProfile()
+                activateMorningProfile()
             }
         }
         val btnClearBill = findViewById<Button>(R.id.btnClearBill)
@@ -237,18 +237,29 @@ class HomeActivity : ComponentActivity() {
     private fun activateEnergyProfile() {
         RoomState.roomStates.forEach { (room, devices) ->
             devices.forEach { (device, _) ->
-                //to be thought of
+                when (device) {
+                    "Lights", "Heater", "AC" -> {
+                        RoomState.roomStates[room]?.put(device, false)
+                        sharedPreferences.edit().putBoolean("${room}_$device", false).apply()
+                    }
+                }
             }
         }
         notifyRooms()
     }
 
-    private fun activateAwayProfile() {
+
+
+    private fun activateMorningProfile() {
         // Turn off all lights and close curtains
         RoomState.roomStates.forEach { (room, devices) ->
             devices.forEach { (device, _) ->
-                RoomState.roomStates[room]?.put(device, false)
-                sharedPreferences.edit().putBoolean("${room}_$device", false).apply()
+                when (device) {
+                    "Curtains" -> {
+                        RoomState.roomStates[room]?.put(device, false)
+                        sharedPreferences.edit().putBoolean("${room}_Curtains", false).apply()
+                    }
+                }
             }
         }
         notifyRooms()
