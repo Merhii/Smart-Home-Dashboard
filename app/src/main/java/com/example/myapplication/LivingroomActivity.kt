@@ -18,12 +18,13 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
 import android.content.SharedPreferences
+import android.os.Handler
+import android.os.Looper
 import kotlin.math.log
 
 private lateinit var ACswitch: Switch
 private lateinit var Curswitch: Switch
 private lateinit var MLswitch: Switch
-private lateinit var ELswitch: Switch
 private lateinit var btnIncreaseTemp: Button
 private lateinit var btnDecreaseTemp: Button
 private lateinit var seekBarACTemp: SeekBar
@@ -37,7 +38,6 @@ class LivingroomActivity : ComponentActivity() {
             ACswitch.isChecked = sharedPreferences.getBoolean("Livingroom_AC", false)
             Curswitch.isChecked = sharedPreferences.getBoolean("Livingroom_Curtains", false)
             MLswitch.isChecked = sharedPreferences.getBoolean("Livingroom_MainLights", false)
-            ELswitch.isChecked = sharedPreferences.getBoolean("Livingroom_EdgeLights", false)
         }
     }
 
@@ -46,12 +46,24 @@ class LivingroomActivity : ComponentActivity() {
     private var isAcOn: Boolean = false
     private var setTemperature: Int = 22
     private var roomTemperature: Int = 22
+    private lateinit var electricityPrefs: SharedPreferences
+    private var handler: Handler? = null
+    private var lightsOn = false
+    private var edgeLightsOn = false
+    private var acOn = false
+
+    private val MAIN_LIGHTS_KWH_PER_5MIN = 0.00083f
+    private val EDGE_LIGHTS_KWH_PER_5MIN = 0.00083f
+    private val AC_KWH_PER_5MIN = 0.166f // assuming 2kW AC
+
+    private val TOTAL_CONSUMPTION_KEY = "TotalConsumption"
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.livingroom)
+        electricityPrefs = getSharedPreferences("ElectricityData", Context.MODE_PRIVATE)
 
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("RoomState", Context.MODE_PRIVATE)
@@ -66,7 +78,7 @@ class LivingroomActivity : ComponentActivity() {
         ACswitch = findViewById(R.id.switchAC)
         Curswitch = findViewById(R.id.switchcurtains)
         MLswitch = findViewById(R.id.switchlights1)
-        ELswitch = findViewById(R.id.switchlights2)
+
 
         btnIncreaseTemp = findViewById(R.id.btnIncreaseTemp)
         btnDecreaseTemp = findViewById(R.id.btnDecreaseTemp)
@@ -79,14 +91,17 @@ class LivingroomActivity : ComponentActivity() {
         ACswitch.isChecked = sharedPreferences.getBoolean("Livingroom_AC", false)
         Curswitch.isChecked = sharedPreferences.getBoolean("Livingroom_Curtains", false)
         MLswitch.isChecked = sharedPreferences.getBoolean("Livingroom_Lights", false)
-        ELswitch.isChecked = sharedPreferences.getBoolean("Livingroom_Lights", false)
+
+
 
         // ✅ AC Switch controls ON/OFF logic
         ACswitch.setOnCheckedChangeListener { _, isChecked ->
             isAcOn = isChecked
+            acOn = isChecked
             sharedPreferences.edit().putBoolean("Livingroom_AC", isChecked).apply()
             updateAcUI()
             updateDeviceStatus("AC", deviceLocation ?: "Living Room", if (isAcOn) 1 else 0)
+            handleLivingroomTracking()
         }
 
         // ✅ MLswitch controls a request (previously missing)
@@ -101,16 +116,11 @@ class LivingroomActivity : ComponentActivity() {
             if (deviceLocation != null) {
                 updateDeviceStatus("Main Lights", deviceLocation, status)
             }
+            lightsOn = isChecked
+            handleLivingroomTracking()
         }
 
-        // ✅ ELswitch controls Edge Lights
-        ELswitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("Livingroom_Lights", isChecked).apply()
-            val status = if (isChecked) 1 else 0
-            if (deviceLocation != null) {
-                updateDeviceStatus("Edge Lights", deviceLocation, status)
-            }
-        }
+
 
         Curswitch.setOnCheckedChangeListener{ _, isChecked ->
             sharedPreferences.edit().putBoolean("Livingroom_Curtains", isChecked).apply()
@@ -125,6 +135,9 @@ class LivingroomActivity : ComponentActivity() {
                 updateDeviceStatus("curts ", deviceLocation, status)
             }
         }
+        lightsOn = MLswitch.isChecked
+        acOn = ACswitch.isChecked
+        handleLivingroomTracking()
 
         // ✅ Temperature adjustment buttons
         btnIncreaseTemp.setOnClickListener { adjustTemperature(1) }
@@ -236,4 +249,40 @@ class LivingroomActivity : ComponentActivity() {
             }
         })
     }
+
+    private fun handleLivingroomTracking() {
+        if (lightsOn || acOn) {
+            if (handler == null) handler = Handler(Looper.getMainLooper())
+            handler?.removeCallbacksAndMessages(null)
+
+            val updateTask = object : Runnable {
+                override fun run() {
+                    // Refresh the switch states safely
+                    lightsOn = MLswitch.isChecked
+                    acOn = ACswitch.isChecked
+
+                    // Stop tracking if all are off
+                    if (!lightsOn && !acOn) {
+                        handler?.removeCallbacksAndMessages(null)
+                        handler = null
+                        return
+                    }
+
+                    var current = electricityPrefs.getFloat(TOTAL_CONSUMPTION_KEY, 0f)
+                    if (lightsOn) current += MAIN_LIGHTS_KWH_PER_5MIN
+                    if (acOn) current += AC_KWH_PER_5MIN
+                    electricityPrefs.edit().putFloat(TOTAL_CONSUMPTION_KEY, current).apply()
+
+                    handler?.postDelayed(this, 300000)
+                }
+            }
+            handler?.post(updateTask)
+        } else {
+            handler?.removeCallbacksAndMessages(null)
+            handler = null
+        }
+    }
+
+
+
 }

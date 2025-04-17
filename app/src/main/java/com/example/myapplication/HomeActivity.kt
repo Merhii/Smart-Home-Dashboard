@@ -44,12 +44,39 @@ import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
-
+import android.os.Handler
+import android.os.Looper
 class HomeActivity : ComponentActivity() {
+    val BILL_RATE = 0.4f
     private var prayerTimings: PrayerTimesResponse? = null
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var updateHandler: Handler
+    private val updateInterval = 5_000L // 5 seconds
+    private val updateRunnable = object : Runnable {
+        override fun run() {
+            updateElectricityUI()
+            updateHandler.postDelayed(this, updateInterval)
+        }
+    }
+    private fun updateElectricityUI() {
+        val prefs = getSharedPreferences("ElectricityData", Context.MODE_PRIVATE)
+        val kwh = prefs.getFloat("TotalConsumption", 0f)
 
+        val tvElectricity = findViewById<TextView>(R.id.tvElectricityValue)
+        val tvBill = findViewById<TextView>(R.id.tvApproxBillValue)
+
+        val bill = kwh * BILL_RATE
+        tvElectricity.text = String.format("%.2f kWh", kwh)
+        tvBill.text = String.format("%.2f $", bill)
+    }
+
+
+
+    override fun onPause() {
+        super.onPause()
+        updateHandler.removeCallbacks(updateRunnable)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -57,6 +84,14 @@ class HomeActivity : ComponentActivity() {
 
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("RoomState", Context.MODE_PRIVATE)
+
+
+// Also update the UI immediately if needed:
+        val tvElectricity = findViewById<TextView>(R.id.tvElectricityValue)
+        val tvBill = findViewById<TextView>(R.id.tvApproxBillValue)
+
+        tvElectricity.text = "0.00 kWh"
+        tvBill.text = "0.00 $"
 
         // Fetch Prayer Times when app starts
         fetchPrayerTimes()
@@ -138,6 +173,44 @@ class HomeActivity : ComponentActivity() {
                 activateAwayProfile()
             }
         }
+        val btnClearBill = findViewById<Button>(R.id.btnClearBill)
+        btnClearBill.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Confirm Reset")
+                .setMessage("Are you sure you want to clear the bill and reset KWH?")
+                .setPositiveButton("Yes") { _, _ ->
+                    val prefs = getSharedPreferences("ElectricityData", Context.MODE_PRIVATE)
+                    prefs.edit().putFloat("TotalConsumption", 0f).apply()
+
+                    val tvElectricity = findViewById<TextView>(R.id.tvElectricityValue)
+                    val tvBill = findViewById<TextView>(R.id.tvApproxBillValue)
+
+                    tvElectricity.text = "0.00 kWh"
+                    tvBill.text = "0.00 $"
+
+                    Toast.makeText(this, "Electricity bill reset.", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+
+    }
+    override fun onResume() {
+        super.onResume()
+        updateHandler = Handler(Looper.getMainLooper())
+        updateHandler.postDelayed(updateRunnable, updateInterval)
+        updateElectricityUI() // Initial update
+        val prefs = getSharedPreferences("ElectricityData", Context.MODE_PRIVATE)
+        val kwh = prefs.getFloat("TotalConsumption", 0f)
+
+        val tvElectricity = findViewById<TextView>(R.id.tvElectricityValue)
+        val tvBill = findViewById<TextView>(R.id.tvApproxBillValue)
+
+        val bill = kwh * BILL_RATE
+
+        tvElectricity.text = String.format("%.2f kWh", kwh)
+        tvBill.text = String.format("%.2f $", bill)
+
     }
 
     private fun activateBedProfile() {

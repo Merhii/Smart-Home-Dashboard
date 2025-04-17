@@ -4,8 +4,11 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.ProgressBar
 import android.widget.Switch
 import android.widget.TextView
@@ -19,24 +22,31 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import android.content.SharedPreferences
 
 private lateinit var Lswitch: Switch
 private lateinit var Hswitch: Switch
 private lateinit var tvTemperature: TextView
 private lateinit var tempProgressBar: ProgressBar
-private var isHeaterOn = false
+private lateinit var sharedPreferences: SharedPreferences
+private lateinit var electricityPrefs: SharedPreferences
+private var lightOn = false
+private var heaterOn = false
+private var bathroomHandler: Handler? = null
+private const val LIGHT_CONSUMPTION_KWH_PER_5MIN = 0.00083f
+private const val HEATER_CONSUMPTION_KWH_PER_5MIN = 0.083f
+private const val TOTAL_CONSUMPTION_KEY = "TotalConsumption"
+
+
+
+
 
 class BathroomActivity : ComponentActivity() {
     private val roomStateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            // Refresh UI based on updated RoomState
             Lswitch.isChecked = sharedPreferences.getBoolean("Bathroom_Lights", false)
             Hswitch.isChecked = sharedPreferences.getBoolean("Bathroom_Heater", false)
         }
     }
-
-    private lateinit var sharedPreferences: SharedPreferences
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,11 +54,12 @@ class BathroomActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.bathroom)
 
-        // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("RoomState", Context.MODE_PRIVATE)
+        electricityPrefs = getSharedPreferences("ElectricityData", Context.MODE_PRIVATE)
 
-        // Register the BroadcastReceiver
-        registerReceiver(roomStateReceiver, IntentFilter("com.example.myapplication.ROOM_STATE_UPDATED"),
+        registerReceiver(
+            roomStateReceiver,
+            IntentFilter("com.example.myapplication.ROOM_STATE_UPDATED"),
             RECEIVER_NOT_EXPORTED
         )
 
@@ -58,66 +69,95 @@ class BathroomActivity : ComponentActivity() {
         tvTemperature = findViewById(R.id.tvTemperature)
         tempProgressBar = findViewById(R.id.tempProgressBar)
 
-        // Restore switch states from SharedPreferences
-        Lswitch.isChecked = sharedPreferences.getBoolean("Bathroom_Lights", false)
-        Hswitch.isChecked = sharedPreferences.getBoolean("Bathroom_Heater", false)
+        lightOn = sharedPreferences.getBoolean("Bathroom_Lights", false)
+        heaterOn = sharedPreferences.getBoolean("Bathroom_Heater", false)
+        handleTracking()
 
-        // Lights Switch Listener
+
         Lswitch.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("Bathroom_Lights", isChecked).apply()
-            val status = if (isChecked) 1 else 0
-            if (deviceLocation != null) {
-                updateDeviceStatus("Lights", deviceLocation, status)
-            }
+            updateDeviceStatus("Lights", deviceLocation ?: "Bathroom", if (isChecked) 1 else 0)
+            handleTracking()
         }
 
-        // Heater Switch Listener
         Hswitch.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("Bathroom_Heater", isChecked).apply()
-            val status = if (isChecked) 1 else 0
-            if (deviceLocation != null) {
-                updateDeviceStatus("Heater", deviceLocation, status)
-            }
+            updateDeviceStatus("Heater", deviceLocation ?: "Bathroom", if (isChecked) 1 else 0)
 
-            // Start/Stop temperature monitoring based on heater status
-            isHeaterOn = isChecked
-            if (isChecked) {
-                startHeatingSimulation()
-            } else {
-                resetTemperature()
-            }
+            if (isChecked) startHeatingSimulation() else resetTemperature()
+            handleTracking()
         }
     }
+    override fun onResume() {
+        super.onResume()
+        Lswitch.isChecked = sharedPreferences.getBoolean("Bathroom_Lights", false)
+        Hswitch.isChecked = sharedPreferences.getBoolean("Bathroom_Heater", false)
+        handleTracking()
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
-        // Unregister the BroadcastReceiver
         unregisterReceiver(roomStateReceiver)
     }
+
+    private fun handleTracking() {
+        // Read actual switch state every time for safety
+        val lightState = sharedPreferences.getBoolean("Bathroom_Lights", false)
+        val heaterState = sharedPreferences.getBoolean("Bathroom_Heater", false)
+
+        if (lightState || heaterState) {
+            if (bathroomHandler == null) bathroomHandler = Handler(Looper.getMainLooper())
+            bathroomHandler?.removeCallbacksAndMessages(null)
+
+            val updateTask = object : Runnable {
+                override fun run() {
+                    val lightOn = sharedPreferences.getBoolean("Bathroom_Lights", false)
+                    val heaterOn = sharedPreferences.getBoolean("Bathroom_Heater", false)
+
+                    if (!lightOn && !heaterOn) {
+                        bathroomHandler?.removeCallbacksAndMessages(null)
+                        bathroomHandler = null
+                        return
+                    }
+
+                    var current = electricityPrefs.getFloat(TOTAL_CONSUMPTION_KEY, 0f)
+                    if (lightOn) current += LIGHT_CONSUMPTION_KWH_PER_5MIN
+                    if (heaterOn) current += HEATER_CONSUMPTION_KWH_PER_5MIN
+                    electricityPrefs.edit().putFloat(TOTAL_CONSUMPTION_KEY, current).apply()
+
+                    bathroomHandler?.postDelayed(this, 300000)
+                }
+            }
+            bathroomHandler?.post(updateTask)
+        } else {
+            bathroomHandler?.removeCallbacksAndMessages(null)
+            bathroomHandler = null
+        }
+    }
+
+
+
 
     private fun updateDeviceStatus(deviceName: String, deviceLocation: String, status: Int) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val response = apiService.updateDeviceStatus(deviceLocation, deviceName, status)
-                if (response.isExecuted) {
-                    Toast.makeText(this@BathroomActivity, "$deviceName status updated successfully", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@BathroomActivity, "Failed to update device status", Toast.LENGTH_SHORT).show()
-                }
+                val msg = if (response.isExecuted) "$deviceName updated successfully" else "Failed to update $deviceName"
+                Toast.makeText(this@BathroomActivity, msg, Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
-                Toast.makeText(this@BathroomActivity, "$deviceName status updated successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BathroomActivity, "$deviceName updated (offline)", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    // Simulate temperature rise when heater is ON
     private fun startHeatingSimulation() {
         lifecycleScope.launch {
-            var temperature = 25  // Starting temperature
-            while (isHeaterOn && temperature <= 50) {  // Simulate heating up to 50°C
+            var temperature = 25
+            while (Hswitch.isChecked && temperature <= 50) {
                 tvTemperature.text = "$temperature °C"
-                tempProgressBar.progress = temperature  // Update progress bar
-                delay(1000) // Update every second
+                tempProgressBar.progress = temperature
+                delay(1000)
                 temperature += 1
             }
         }

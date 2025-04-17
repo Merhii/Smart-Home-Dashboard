@@ -1,495 +1,507 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:padding="16dp">
-
-    <!-- Header Section -->
-    <TextView
-        android:id="@+id/tvHeader"
-        android:layout_width="149dp"
-        android:layout_height="32dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="24dp"
-        android:text=""
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000000" />
-
-    <!-- Notification Icon -->
-    <ImageView
-        android:id="@+id/ivNotification"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="289dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/baseline_notifications_none_24"
-        android:contentDescription="Notifications"
-        android:clickable="true"
-        android:focusable="true" />
-
-    <!-- Profile Icon -->
-    <ImageView
-        android:id="@+id/ivProfile"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="351dp"
-        android:layout_marginTop="26dp"
-        android:src="@drawable/account_circle_37dp_0_fill0_wght400_grad0_opsz40"
-        android:contentDescription="Profile"
-        android:clickable="true"
-        android:focusable="true" />
-
-    <!-- Electricity Consumption -->
-    <TextView
-        android:id="@+id/tvElectricityConsumption"
-        android:layout_width="200dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="125dp"
-        android:text="Electricity Consumption"
-        android:textSize="18sp"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/tvElectricityValue"
-        android:layout_width="83dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="161dp"
-        android:text="180kWh"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        android:textColor="#000000" />
-
-    <!-- Approx Bill -->
-    <TextView
-        android:id="@+id/tvApproxBill"
-        android:layout_width="100dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="280dp"
-        android:layout_marginTop="124dp"
-        android:text="Approx Bill"
-        android:textSize="18sp"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/tvApproxBillValue"
-        android:layout_width="72dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="280dp"
-        android:layout_marginTop="161dp"
-        android:text="26.55$"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        android:textColor="#000000" />
-
-    <TextView
-        android:id="@+id/tvHomeOverview"
-        android:layout_width="200dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="227dp"
-        android:text="Home Overview"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        android:textColor="#000000" />
-
-    <!-- Horizontal ScrollView for Cards -->
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvHomeOverview"
-        android:layout_marginTop="10dp"
-        android:fillViewport="true"
-        android:scrollbars="none">
-
-        <!-- Vertical LinearLayout to hold the rows -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- First Row -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp">
-                <FrameLayout
-                    android:id="@+id/containerentrance"
-                    android:layout_width="160dp"
-                    android:layout_height="200dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/drop_shadow_frame"
-                    android:backgroundTint="@color/white"
-                    android:elevation="10dp">
-
-                    <Button
-                        android:id="@+id/entrance"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:focusable="false"
-                        android:clickable="true" />
-                    <ImageView
-                        android:layout_marginTop="-6dp"
-                        android:layout_width="72dp"
-                        android:layout_height="55dp"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/entrance"/>
-
-                    <TextView
-                        android:id="@+id/tventrance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="40dp"
-                        android:text="Entrance"
-                        android:textColor="#000000"
-                        android:textSize="22sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textAllCaps="false" />
-                </FrameLayout>
-                <!-- Button 1: Living -->
-                <FrameLayout
-                    android:id="@+id/containerLiving"
-                    android:layout_width="160dp"
-                    android:layout_height="200dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/drop_shadow_frame"
-                    android:backgroundTint="@color/white"
-                    android:elevation="10dp">
-
-                    <Button
-                        android:id="@+id/living"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:focusable="false"
-                        android:clickable="true" />
-                    <ImageView
-                        android:layout_marginTop="-10dp"
-                        android:layout_width="72dp"
-                        android:layout_height="55dp"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/chair" />
-
-                    <TextView
-                        android:id="@+id/tvLiving"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="40dp"
-                        android:text="Livingroom"
-                        android:textColor="#000000"
-                        android:textSize="22sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textAllCaps="false" />
-                </FrameLayout>
-
-                <!-- Button 2: Bed -->
-                <FrameLayout
-                    android:id="@+id/containerBed"
-                    android:layout_width="160dp"
-                    android:layout_height="200dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/drop_shadow_frame"
-                    android:backgroundTint="@color/white"
-                    android:elevation="10dp">
-
-                    <Button
-                        android:id="@+id/bed"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:focusable="false"
-                        android:clickable="true" />
-                    <ImageView
-                        android:layout_marginTop="-6dp"
-                        android:layout_width="72dp"
-                        android:layout_height="55dp"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/bed"/>
-                    <TextView
-                        android:id="@+id/tvBed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="40dp"
-                        android:text="Bedroom"
-                        android:textColor="#000000"
-                        android:textSize="22sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textAllCaps="false" />
-                </FrameLayout>
-            </LinearLayout>
-
-            <!-- Second Row -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <!-- Button 3: Bath -->
-                <FrameLayout
-                    android:id="@+id/containerBath"
-                    android:layout_width="160dp"
-                    android:layout_height="200dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/drop_shadow_frame"
-                    android:backgroundTint="@color/white"
-                    android:elevation="10dp">
-
-                    <Button
-                        android:id="@+id/bath"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:focusable="false"
-                        android:clickable="true" />
-                    <ImageView
-                        android:layout_marginTop="-6dp"
-                        android:layout_width="72dp"
-                        android:layout_height="55dp"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/shower"/>
-                    <TextView
-                        android:id="@+id/tvBath"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="40dp"
-                        android:text="Bathroom"
-                        android:textColor="#000000"
-                        android:textSize="22sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textAllCaps="false" />
-                </FrameLayout>
-
-                <!-- Button 4: Kitchen -->
-                <FrameLayout
-                    android:id="@+id/containerKitchen"
-                    android:layout_width="160dp"
-                    android:layout_height="200dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/drop_shadow_frame"
-                    android:backgroundTint="@color/white"
-                    android:elevation="10dp">
-
-                    <Button
-                        android:id="@+id/kitchen"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:focusable="false"
-                        android:clickable="true" />
-                    <ImageView
-                        android:layout_marginTop="-6dp"
-                        android:layout_width="72dp"
-                        android:layout_height="55dp"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/kitchen"/>
-
-                    <TextView
-                        android:id="@+id/tvKitchen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="40dp"
-                        android:text="Kitchen"
-                        android:textColor="#000000"
-                        android:textSize="22sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textAllCaps="false" />
-                </FrameLayout>
-                <FrameLayout
-                    android:id="@+id/containergarage"
-                    android:layout_width="160dp"
-                    android:layout_height="200dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/drop_shadow_frame"
-                    android:backgroundTint="@color/white"
-                    android:elevation="10dp">
-
-                    <Button
-                        android:id="@+id/garage"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:focusable="false"
-                        android:clickable="true" />
-                    <ImageView
-                        android:layout_marginTop="-6dp"
-                        android:layout_width="72dp"
-                        android:layout_height="55dp"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/garage"/>
-
-                    <TextView
-                        android:id="@+id/tvgarage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="40dp"
-                        android:text="Garage"
-                        android:textColor="#000000"
-                        android:textSize="22sp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textAllCaps="false" />
-                </FrameLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-    </HorizontalScrollView>
-
-    <!-- Quick Profiles Section -->
-    <TextView
-        android:textColor="#000000"
-        android:layout_width="200dp"
-        android:layout_height="35dp"
-        android:text="Quick Profiles:"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="730dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/poppins_semibold"
-        android:textAllCaps="false"/>
-
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#F5F5F5"
+        android:padding="16dp">
 
-        <FrameLayout
-            android:id="@+id/containerP1"
-            android:layout_width="112dp"
-            android:layout_height="80dp"
+        <!-- Header Section -->
+        <TextView
+            android:id="@+id/tvHeader"
+            android:layout_width="149dp"
+            android:layout_height="32dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="24dp"
+            android:text=""
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <!-- Notification Icon -->
+        <ImageView
+            android:id="@+id/ivNotification"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="289dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/baseline_notifications_none_24"
+            android:contentDescription="Notifications"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- Profile Icon -->
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="351dp"
+            android:layout_marginTop="26dp"
+            android:src="@drawable/account_circle_37dp_0_fill0_wght400_grad0_opsz40"
+            android:contentDescription="Profile"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- Electricity Consumption -->
+        <TextView
+            android:id="@+id/tvElectricityConsumption"
+            android:layout_width="200dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="125dp"
+            android:text="Electricity Consumption"
+            android:textSize="18sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tvElectricityValue"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="161dp"
+            android:text="0.00 kWh"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <!-- Approx Bill -->
+        <TextView
+            android:id="@+id/tvApproxBill"
+            android:layout_width="100dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="124dp"
+            android:text="Approx Bill"
+            android:textSize="18sp"
+            android:textColor="#000000" />
+    <Button
+        android:id="@+id/btnClearBill"
+        android:layout_width="90dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="17dp"
+        android:layout_alignParentEnd="true"
+        android:text="Clear Bill"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:backgroundTint="#FF5252"
+        android:elevation="6dp" />
+
+        <TextView
+            android:id="@+id/tvApproxBillValue"
+            android:layout_width="72dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="161dp"
+            android:text="0.00 $"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tvHomeOverview"
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="227dp"
+            android:text="Home Overview"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <!-- Horizontal ScrollView for Cards -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvHomeOverview"
+            android:layout_marginTop="10dp"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <!-- Vertical LinearLayout to hold the rows -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- First Row -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+                    <FrameLayout
+                        android:id="@+id/containerentrance"
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/drop_shadow_frame"
+                        android:backgroundTint="@color/white"
+                        android:elevation="10dp">
+
+                        <Button
+                            android:id="@+id/entrance"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:focusable="false"
+                            android:clickable="true" />
+                        <ImageView
+                            android:layout_marginTop="-6dp"
+                            android:layout_width="72dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/entrance"/>
+
+                        <TextView
+                            android:id="@+id/tventrance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:text="Entrance"
+                            android:textColor="#000000"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textAllCaps="false" />
+                    </FrameLayout>
+                    <!-- Button 1: Living -->
+                    <FrameLayout
+                        android:id="@+id/containerLiving"
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/drop_shadow_frame"
+                        android:backgroundTint="@color/white"
+                        android:elevation="10dp">
+
+                        <Button
+                            android:id="@+id/living"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:focusable="false"
+                            android:clickable="true" />
+                        <ImageView
+                            android:layout_marginTop="-10dp"
+                            android:layout_width="72dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/chair" />
+
+                        <TextView
+                            android:id="@+id/tvLiving"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:text="Livingroom"
+                            android:textColor="#000000"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textAllCaps="false" />
+                    </FrameLayout>
+
+                    <!-- Button 2: Bed -->
+                    <FrameLayout
+                        android:id="@+id/containerBed"
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/drop_shadow_frame"
+                        android:backgroundTint="@color/white"
+                        android:elevation="10dp">
+
+                        <Button
+                            android:id="@+id/bed"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:focusable="false"
+                            android:clickable="true" />
+                        <ImageView
+                            android:layout_marginTop="-6dp"
+                            android:layout_width="72dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/bed"/>
+                        <TextView
+                            android:id="@+id/tvBed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:text="Bedroom"
+                            android:textColor="#000000"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textAllCaps="false" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <!-- Second Row -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <!-- Button 3: Bath -->
+                    <FrameLayout
+                        android:id="@+id/containerBath"
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/drop_shadow_frame"
+                        android:backgroundTint="@color/white"
+                        android:elevation="10dp">
+
+                        <Button
+                            android:id="@+id/bath"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:focusable="false"
+                            android:clickable="true" />
+                        <ImageView
+                            android:layout_marginTop="-6dp"
+                            android:layout_width="72dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/shower"/>
+                        <TextView
+                            android:id="@+id/tvBath"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:text="Bathroom"
+                            android:textColor="#000000"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textAllCaps="false" />
+                    </FrameLayout>
+
+                    <!-- Button 4: Kitchen -->
+                    <FrameLayout
+                        android:id="@+id/containerKitchen"
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/drop_shadow_frame"
+                        android:backgroundTint="@color/white"
+                        android:elevation="10dp">
+
+                        <Button
+                            android:id="@+id/kitchen"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:focusable="false"
+                            android:clickable="true" />
+                        <ImageView
+                            android:layout_marginTop="-6dp"
+                            android:layout_width="72dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/kitchen"/>
+
+                        <TextView
+                            android:id="@+id/tvKitchen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:text="Kitchen"
+                            android:textColor="#000000"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textAllCaps="false" />
+                    </FrameLayout>
+                    <FrameLayout
+                        android:id="@+id/containergarage"
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/drop_shadow_frame"
+                        android:backgroundTint="@color/white"
+                        android:elevation="10dp">
+
+                        <Button
+                            android:id="@+id/garage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:focusable="false"
+                            android:clickable="true" />
+                        <ImageView
+                            android:layout_marginTop="-6dp"
+                            android:layout_width="72dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/garage"/>
+
+                        <TextView
+                            android:id="@+id/tvgarage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:text="Garage"
+                            android:textColor="#000000"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textAllCaps="false" />
+                    </FrameLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Quick Profiles Section -->
+        <TextView
+            android:textColor="#000000"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:text="Quick Profiles:"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="770dp"
-            android:background="@drawable/quick_profile"
-            android:backgroundTint="#FFFFFF"
-            android:elevation="10dp">
+            android:layout_marginTop="730dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textAllCaps="false"/>
 
-            <Button
-                android:id="@+id/P1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:clickable="false"
-                android:focusable="false" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <FrameLayout
+                android:id="@+id/containerP1"
+                android:layout_width="112dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="770dp"
+                android:background="@drawable/quick_profile"
+                android:backgroundTint="#FFFFFF"
+                android:elevation="10dp">
 
-            <Switch
-                android:id="@+id/switchControl1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:scaleX="1.1"
-                android:track="@drawable/track" />
-
-            <TextView
-                android:id="@+id/tvP1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="-18dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Bedtime"
-                android:textAllCaps="false"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/containerP2"
-            android:layout_width="112dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="770dp"
-            android:background="@drawable/quick_profile"
-            android:backgroundTint="#FFFFFF"
-            android:elevation="10dp">
-
-            <Button
-                android:id="@+id/P2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:clickable="false"
-                android:focusable="false" />
+                <Button
+                    android:id="@+id/P1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:focusable="false" />
 
 
-            <Switch
-                android:id="@+id/switchControl2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:scaleX="1.1"
-                android:track="@drawable/track" />
+                <Switch
+                    android:id="@+id/switchControl1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:scaleX="1.1"
+                    android:track="@drawable/track" />
 
-            <TextView
-                android:id="@+id/tvP2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="-18dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Energy save"
-                android:textAllCaps="false"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-        </FrameLayout>
+                <TextView
+                    android:id="@+id/tvP1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-18dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Bedtime"
+                    android:textAllCaps="false"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/containerP3"
-            android:layout_width="112dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="260dp"
-            android:layout_marginTop="770dp"
-            android:background="@drawable/quick_profile"
-            android:backgroundTint="#FFFFFF"
-            android:elevation="10dp">
+            <FrameLayout
+                android:id="@+id/containerP2"
+                android:layout_width="112dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="770dp"
+                android:background="@drawable/quick_profile"
+                android:backgroundTint="#FFFFFF"
+                android:elevation="10dp">
 
-            <Button
-                android:id="@+id/P3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:clickable="false"
-                android:focusable="false" />
+                <Button
+                    android:id="@+id/P2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:focusable="false" />
 
 
-            <Switch
-                android:id="@+id/switchControl3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:scaleX="1.1"
-                android:track="@drawable/track" />
+                <Switch
+                    android:id="@+id/switchControl2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:scaleX="1.1"
+                    android:track="@drawable/track" />
 
-            <TextView
-                android:id="@+id/tvP3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="-18dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Away"
-                android:textAllCaps="false"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-        </FrameLayout>
+                <TextView
+                    android:id="@+id/tvP2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-18dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Energy save"
+                    android:textAllCaps="false"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/containerP3"
+                android:layout_width="112dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="260dp"
+                android:layout_marginTop="770dp"
+                android:background="@drawable/quick_profile"
+                android:backgroundTint="#FFFFFF"
+                android:elevation="10dp">
+
+                <Button
+                    android:id="@+id/P3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:focusable="false" />
+
+
+                <Switch
+                    android:id="@+id/switchControl3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:scaleX="1.1"
+                    android:track="@drawable/track" />
+
+                <TextView
+                    android:id="@+id/tvP3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-18dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Away"
+                    android:textAllCaps="false"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </FrameLayout>
+        </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
