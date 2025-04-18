@@ -150,7 +150,7 @@ class HomeActivity : ComponentActivity() {
             intent.putExtra("loc", "Garage")
             startActivity(intent)
         }
-//        updateNotificationDot(true)
+        updateNotificationDot(true)
         // Set up listeners for Quick Profiles
         val switchBed = findViewById<Switch>(R.id.switchControl1)
         val switchEnergy = findViewById<Switch>(R.id.switchControl2)
@@ -354,7 +354,7 @@ class HomeActivity : ComponentActivity() {
                             tvNoNotifications.visibility = View.VISIBLE
                             tvNoNotifications.animate().alpha(1f).setDuration(300).start()
 
-//                                updateNotificationDot(false)
+                                updateNotificationDot(false)
 
 
                         }
@@ -375,11 +375,11 @@ class HomeActivity : ComponentActivity() {
     }
 
 
-//    private fun updateNotificationDot(hasNew: Boolean) {
-//        val dotView: View = findViewById(R.id.ivNotificationDot)
-//        dotView.visibility = if (hasNew) View.VISIBLE else View.GONE
-//
-//    }
+    private fun updateNotificationDot(hasNew: Boolean) {
+        val dotView: View = findViewById(R.id.ivNotificationDot)
+        dotView.visibility = if (hasNew) View.VISIBLE else View.GONE
+
+    }
 
 
 
