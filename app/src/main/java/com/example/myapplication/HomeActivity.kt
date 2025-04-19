@@ -62,7 +62,7 @@ class HomeActivity : ComponentActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var updateHandler: Handler
-    private val updateInterval = 30000L // 30 sec
+    private val updateInterval = 10000L // 30 sec
     private val updateRunnable = object : Runnable {
         override fun run() {
             updateElectricityUI()

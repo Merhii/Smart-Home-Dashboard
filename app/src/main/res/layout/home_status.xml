@@ -281,7 +281,7 @@
                             android:layout_height="55dp"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
-                            android:src="@drawable/bed"/>
+                            android:src="@drawable/electric"/>
                         <TextView
                             android:id="@+id/tvElectric"
                             android:layout_width="wrap_content"
@@ -435,7 +435,7 @@
                             android:layout_height="55dp"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
-                            android:src="@drawable/garage"/>
+                            android:src="@drawable/laundry"/>
 
                         <TextView
                             android:id="@+id/tvlaundry"
