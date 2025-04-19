@@ -259,6 +259,41 @@
                             android:fontFamily="@font/poppins_semibold"
                             android:textAllCaps="false" />
                     </FrameLayout>
+                    <FrameLayout
+                        android:id="@+id/containerElectric"
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/drop_shadow_frame"
+                        android:backgroundTint="@color/white"
+                        android:elevation="10dp">
+
+                        <Button
+                            android:id="@+id/Electric"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:focusable="false"
+                            android:clickable="true" />
+                        <ImageView
+                            android:layout_marginTop="-6dp"
+                            android:layout_width="72dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/bed"/>
+                        <TextView
+                            android:id="@+id/tvElectric"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:text="Electric Area"
+                            android:textColor="#000000"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textAllCaps="false" />
+                    </FrameLayout>
                 </LinearLayout>
 
                 <!-- Second Row -->
@@ -378,7 +413,42 @@
                             android:fontFamily="@font/poppins_semibold"
                             android:textAllCaps="false" />
                     </FrameLayout>
+                    <FrameLayout
+                        android:id="@+id/containerlaundry"
+                        android:layout_width="160dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/drop_shadow_frame"
+                        android:backgroundTint="@color/white"
+                        android:elevation="10dp">
 
+                        <Button
+                            android:id="@+id/Laundry"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:focusable="false"
+                            android:clickable="true" />
+                        <ImageView
+                            android:layout_marginTop="-6dp"
+                            android:layout_width="72dp"
+                            android:layout_height="55dp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/garage"/>
+
+                        <TextView
+                            android:id="@+id/tvlaundry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:text="Laundry"
+                            android:textColor="#000000"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textAllCaps="false" />
+                    </FrameLayout>
                 </LinearLayout>
             </LinearLayout>
         </HorizontalScrollView>

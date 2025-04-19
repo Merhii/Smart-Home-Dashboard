@@ -108,6 +108,8 @@ class HomeActivity : ComponentActivity() {
         var kitchen = findViewById<Button>(R.id.kitchen)
         var entrance = findViewById<Button>(R.id.entrance)
         var garage = findViewById<Button>(R.id.garage)
+        var electric = findViewById<Button>(R.id.Electric)
+        var laundry = findViewById<Button>(R.id.Laundry)
         var username = intent.getStringExtra("username")
         name.text = "$username's Home"
 
@@ -150,6 +152,17 @@ class HomeActivity : ComponentActivity() {
             intent.putExtra("loc", "Garage")
             startActivity(intent)
         }
+        electric.setOnClickListener {
+            val intent = Intent(this@HomeActivity, ElectricActivity::class.java)
+            intent.putExtra("loc", "Electric")
+            startActivity(intent)
+        }
+        laundry.setOnClickListener {
+            val intent = Intent(this@HomeActivity, ElectricActivity::class.java)
+            intent.putExtra("loc", "Laundry")
+            startActivity(intent)
+        }
+
         updateNotificationDot(true)
         // Set up listeners for Quick Profiles
         val switchBed = findViewById<Switch>(R.id.switchControl1)
@@ -276,7 +289,7 @@ class HomeActivity : ComponentActivity() {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_notifications, null)
         // Create the AlertDialog
         addNotification("Rain detected. Laundry retracted", dialogView)
-        addNotification("Dayraki GAY. Laundry retracted", dialogView)
+        addNotification("Laundry retracted", dialogView)
         val dialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .create()

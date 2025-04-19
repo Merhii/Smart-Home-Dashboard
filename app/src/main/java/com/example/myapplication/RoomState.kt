@@ -21,5 +21,7 @@ object RoomState {
         roomStates["Kitchen"] = mutableMapOf("Lights" to false)
         roomStates["Entrance"] = mutableMapOf("Lights" to false)
         roomStates["Garage"] = mutableMapOf("Lights" to false)
+        roomStates["Electric"] = mutableMapOf("Lights" to false)
+        roomStates["Laundry"] = mutableMapOf("Lights" to false)
     }
 }

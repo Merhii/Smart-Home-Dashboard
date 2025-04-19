@@ -38,7 +38,8 @@
         <activity android:name=".ProfileActivity"/>
         <activity android:name=".GarageActivity"/>
         <activity android:name=".EntranceActivity"/>
-
+        <activity android:name=".ElectricActivity"/>
+        <activity android:name=".LaundryActivity"/>
     </application>
 
 </manifest>
