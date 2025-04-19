@@ -8,11 +8,13 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.KeyEvent
+import org.json.JSONObject
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import kotlinx.coroutines.withContext
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.DTO.RegisterUserDto
@@ -46,9 +48,17 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import android.os.Handler
 import android.os.Looper
+import okhttp3.OkHttpClient
+
 class HomeActivity : ComponentActivity() {
     val BILL_RATE = 0.4f
     private var prayerTimings: PrayerTimesResponse? = null
+    private val client = OkHttpClient()
+    private val notificationApiUrls = listOf("http://192.168.1.139:5000/hello")
+    private val notificationMessages = mutableListOf<String>()
+    private lateinit var notificationListLayout: LinearLayout
+    private lateinit var tvNoNotifications: TextView
+
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var updateHandler: Handler
@@ -73,6 +83,7 @@ class HomeActivity : ComponentActivity() {
 
 
 
+
     override fun onPause() {
         super.onPause()
         updateHandler.removeCallbacks(updateRunnable)
@@ -81,7 +92,7 @@ class HomeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.home_status)
-
+        fetchAllNotifications()
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("RoomState", Context.MODE_PRIVATE)
 
@@ -208,6 +219,24 @@ class HomeActivity : ComponentActivity() {
         }
 
     }
+    private fun fetchAllNotifications() {
+        lifecycleScope.launch {
+            notificationMessages.clear()
+
+            for (url in notificationApiUrls) {
+                try {
+                    val result = notireq(url)
+                    val json = org.json.JSONObject(result)
+                    val message = json.getString("data")
+                    notificationMessages.add(message)
+                } catch (e: Exception) {
+                    notificationMessages.add("Failed to fetch from $url")
+                }
+            }
+        }
+    }
+
+
     override fun onResume() {
         super.onResume()
         updateHandler = Handler(Looper.getMainLooper())
@@ -285,22 +314,30 @@ class HomeActivity : ComponentActivity() {
     }
 
     private fun showNotificationDialog() {
-        // Inflate the custom dialog layout
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_notifications, null)
-        // Create the AlertDialog
-        addNotification("Rain detected. Laundry retracted", dialogView)
-        addNotification("Laundry retracted", dialogView)
+        notificationListLayout = dialogView.findViewById(R.id.notificationListLayout)
+        tvNoNotifications = dialogView.findViewById(R.id.tvNoNotifications)
+
         val dialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .create()
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
-        // Close button action
-        val btnCloseDialog: Button = dialogView.findViewById(R.id.btnCloseDialog)
-        btnCloseDialog.setOnClickListener {
+
+        // Close button
+        dialogView.findViewById<Button>(R.id.btnCloseDialog).setOnClickListener {
             dialog.dismiss()
         }
+
+        // Display notifications
+        if (notificationMessages.isEmpty()) {
+            tvNoNotifications.visibility = View.VISIBLE
+        } else {
+            tvNoNotifications.visibility = View.GONE
+            notificationMessages.forEach { msg -> addNotification(msg, dialogView) }
+        }
     }
+
     private fun addNotification(notificationText: String, dialogView: View) {
         val notificationListLayout: LinearLayout = dialogView.findViewById(R.id.notificationListLayout)
         val tvNoNotifications: TextView = dialogView.findViewById(R.id.tvNoNotifications)
@@ -395,6 +432,35 @@ class HomeActivity : ComponentActivity() {
     }
 
 
+    private suspend fun notireq(url: String): String = withContext(Dispatchers.IO) {
+        val request = okhttp3.Request.Builder().url(url).build()
+        val response = client.newCall(request).execute()
+        if (!response.isSuccessful) throw IOException("Unexpected code $response")
+        response.body?.string() ?: throw IOException("Empty response body")
+    }
+
+    private fun sendRequest(url: String) {
+        val request = Request.Builder()
+            .url(url)
+            .build()
+
+        client.newCall(request).enqueue(object : okhttp3.Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@HomeActivity, "Failed to send request", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                response.use {
+                    if (!response.isSuccessful) throw IOException("Unexpected code $response")
+                    runOnUiThread {
+                        Toast.makeText(this@HomeActivity, "Request Sent Successfully", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
 
 
 
