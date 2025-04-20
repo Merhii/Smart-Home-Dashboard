@@ -13,14 +13,12 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
-import com.example.myapplication.RetrofitInstance.apiService
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
 import android.content.SharedPreferences
 import android.os.Handler
 import android.os.Looper
-import kotlin.math.log
 
 private lateinit var ACswitch: Switch
 private lateinit var Curswitch: Switch
@@ -99,7 +97,6 @@ class LivingroomActivity : ComponentActivity() {
             acOn = isChecked
             sharedPreferences.edit().putBoolean("Livingroom_AC", isChecked).apply()
             updateAcUI()
-            updateDeviceStatus("AC", deviceLocation ?: "Living Room", if (isAcOn) 1 else 0)
             handleLivingroomTracking()
         }
 
@@ -110,10 +107,6 @@ class LivingroomActivity : ComponentActivity() {
                 sendRequest(IP.ledon)
             } else {
                 sendRequest(IP.ledoff)
-            }
-            val status = if (isChecked) 1 else 0
-            if (deviceLocation != null) {
-                updateDeviceStatus("Main Lights", deviceLocation, status)
             }
             lightsOn = isChecked
             handleLivingroomTracking()
@@ -128,10 +121,6 @@ class LivingroomActivity : ComponentActivity() {
                 println(IP.curtson)
             } else {
                 sendRequest(IP.curtsoff)
-            }
-            val status = if (isChecked) 1 else 0
-            if (deviceLocation != null) {
-                updateDeviceStatus("curts ", deviceLocation, status)
             }
         }
         lightsOn = MLswitch.isChecked
@@ -211,20 +200,7 @@ class LivingroomActivity : ComponentActivity() {
         }
     }
 
-    private fun updateDeviceStatus(deviceName: String, deviceLocation: String, status: Int) {
-        lifecycleScope.launch {
-            try {
-                val response = apiService.updateDeviceStatus(deviceLocation, deviceName, status)
-                if (response.isExecuted) {
-                    Toast.makeText(this@LivingroomActivity, "$deviceName updated successfully", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@LivingroomActivity, "Failed to update $deviceName", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(this@LivingroomActivity, "Error updating $deviceName", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+
 
     private fun sendRequest(url: String) {
         val request = Request.Builder()

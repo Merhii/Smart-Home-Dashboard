@@ -11,11 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.viewModels
-import com.example.myapplication.DTO.RegisterUserDto
 import com.example.myapplication.DTO.VerifyUserDto
-import com.example.myapplication.Entity.User
-import com.example.myapplication.R
 import com.example.myapplication.RetrofitInstance.apiService
 import retrofit2.Call
 import retrofit2.Callback

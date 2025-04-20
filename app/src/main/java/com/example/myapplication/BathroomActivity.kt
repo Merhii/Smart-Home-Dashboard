@@ -12,14 +12,10 @@ import android.os.Looper
 import android.widget.ProgressBar
 import android.widget.Switch
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
-import com.example.myapplication.RetrofitInstance.apiService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -76,13 +72,11 @@ class BathroomActivity : ComponentActivity() {
 
         Lswitch.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("Bathroom_Lights", isChecked).apply()
-            updateDeviceStatus("Lights", deviceLocation ?: "Bathroom", if (isChecked) 1 else 0)
             handleTracking()
         }
 
         Hswitch.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("Bathroom_Heater", isChecked).apply()
-            updateDeviceStatus("Heater", deviceLocation ?: "Bathroom", if (isChecked) 1 else 0)
 
             if (isChecked) startHeatingSimulation() else resetTemperature()
             handleTracking()
@@ -139,17 +133,6 @@ class BathroomActivity : ComponentActivity() {
 
 
 
-    private fun updateDeviceStatus(deviceName: String, deviceLocation: String, status: Int) {
-        CoroutineScope(Dispatchers.Main).launch {
-            try {
-                val response = apiService.updateDeviceStatus(deviceLocation, deviceName, status)
-                val msg = if (response.isExecuted) "$deviceName updated successfully" else "Failed to update $deviceName"
-                Toast.makeText(this@BathroomActivity, msg, Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
-                Toast.makeText(this@BathroomActivity, "$deviceName updated (offline)", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     private fun startHeatingSimulation() {
         lifecycleScope.launch {

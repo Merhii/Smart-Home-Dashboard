@@ -10,15 +10,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Switch
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import android.content.SharedPreferences
-import com.example.myapplication.RetrofitInstance.apiService
 
 private lateinit var switchLight: Switch
 private lateinit var sharedPreferences: SharedPreferences
@@ -52,7 +47,6 @@ class ElectricActivity : ComponentActivity() {
 
         switchLight.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("Electric_Lights", isChecked).apply()
-            updateDeviceStatus("Lights", "Electric", if (isChecked) 1 else 0)
             handleTracking()
         }
     }
@@ -92,15 +86,5 @@ class ElectricActivity : ComponentActivity() {
         }
     }
 
-    private fun updateDeviceStatus(deviceName: String, deviceLocation: String, status: Int) {
-        CoroutineScope(Dispatchers.Main).launch {
-            try {
-                val response = apiService.updateDeviceStatus(deviceLocation, deviceName, status)
-                val msg = if (response.isExecuted) "$deviceName status updated successfully" else "Failed to update $deviceName"
-                Toast.makeText(this@ElectricActivity, msg, Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
-                Toast.makeText(this@ElectricActivity, "$deviceName status updated (offline)", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+
 }

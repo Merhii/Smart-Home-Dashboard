@@ -2,7 +2,6 @@ package com.example.myapplication
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge

@@ -4,13 +4,8 @@ package com.example.myapplication
 import android.content.*
 import android.os.*
 import android.widget.Switch
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.annotation.RequiresApi
-import com.example.myapplication.RetrofitInstance.apiService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 private lateinit var kitchenSwitch: Switch
 private lateinit var kitchenPrefs: SharedPreferences
@@ -40,7 +35,6 @@ class KitchenActivity : ComponentActivity() {
 
         kitchenSwitch.setOnCheckedChangeListener { _, isChecked ->
             kitchenPrefs.edit().putBoolean("Kitchen_Lights", isChecked).apply()
-            updateDeviceStatus("Lights", loc, if (isChecked) 1 else 0)
             handleKitchenTracking(electricityPrefs)
         }
 
@@ -72,17 +66,7 @@ class KitchenActivity : ComponentActivity() {
         }
     }
 
-    private fun updateDeviceStatus(name: String, location: String, status: Int) {
-        CoroutineScope(Dispatchers.Main).launch {
-            try {
-                val response = apiService.updateDeviceStatus(location, name, status)
-                val msg = if (response.isExecuted) "$name updated successfully" else "Failed to update $name"
-                Toast.makeText(this@KitchenActivity, msg, Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
-                Toast.makeText(this@KitchenActivity, "$name updated (offline)", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+
 
     override fun onDestroy() {
         super.onDestroy()

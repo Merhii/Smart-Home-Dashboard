@@ -2,23 +2,10 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
 import android.widget.Button
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import androidx.lifecycle.lifecycleScope
-import androidx.work.*
-import com.example.myapplication.RetrofitInstance.apiService
-import com.example.myapplication.Entity.User
-import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.*
-import android.media.MediaPlayer
-import java.util.concurrent.TimeUnit
+
 
 class MainActivity : ComponentActivity() {
 

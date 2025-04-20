@@ -8,27 +8,16 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.os.Looper
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.lifecycleScope
-import com.example.myapplication.DTO.RegisterUserDto
-import com.example.myapplication.Entity.User
 import com.example.myapplication.RetrofitInstance.apiService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
 import android.os.Handler
 
 private var lightOn = false
@@ -37,7 +26,6 @@ private lateinit var electricityPrefs: SharedPreferences
 
 private val LAMP_CONSUMPTION_KWH_PER_5MIN = 0.00083f
 private val BILL_RATE = 0.1475f
-private val TOTAL_CONSUMPTION_KEY = "TotalConsumption"
 
 private lateinit var switchLight: Switch
 
@@ -51,7 +39,6 @@ class EntranceActivity : ComponentActivity() {
         }
     }
     companion object {
-        const val ENTRANCE_LIGHT_CONSUMPTION_PER_HOUR = 0.06f // 60W = 0.06 kWh
         const val SHARED_PREF_ELECTRICITY = "ElectricityData"
         const val TOTAL_CONSUMPTION_KEY = "TotalConsumption"
     }
