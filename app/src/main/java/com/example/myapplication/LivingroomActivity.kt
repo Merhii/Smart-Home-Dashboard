@@ -117,10 +117,10 @@ class LivingroomActivity : ComponentActivity() {
         Curswitch.setOnCheckedChangeListener{ _, isChecked ->
             sharedPreferences.edit().putBoolean("Livingroom_Curtains", isChecked).apply()
             if (isChecked) {
-                sendRequest(IP.curtson)
+                sendRequest(IP2.openCurtains)
                 println(IP.curtson)
             } else {
-                sendRequest(IP.curtsoff)
+                sendRequest(IP2.closeCurtains)
             }
         }
         lightsOn = MLswitch.isChecked

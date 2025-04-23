@@ -144,11 +144,14 @@
                 android:orientation="vertical">
 
                 <!-- First Row -->
+
+                <!-- Second Row -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="10dp">
+
                     <FrameLayout
                         android:id="@+id/containerentrance"
                         android:layout_width="160dp"
@@ -163,15 +166,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:focusable="false"
-                            android:clickable="true" />
+                            android:clickable="true"
+                            android:focusable="false" />
+
                         <ImageView
-                            android:layout_marginTop="-6dp"
                             android:layout_width="72dp"
                             android:layout_height="55dp"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
-                            android:src="@drawable/entrance"/>
+                            android:layout_marginTop="-6dp"
+                            android:src="@drawable/entrance" />
 
                         <TextView
                             android:id="@+id/tventrance"
@@ -179,11 +183,11 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="40dp"
-                            android:text="Entrance"
-                            android:textColor="#000000"
-                            android:textSize="22sp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:textAllCaps="false" />
+                            android:text="Entrance"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="22sp" />
                     </FrameLayout>
                     <!-- Button 1: Living -->
                     <FrameLayout
@@ -200,14 +204,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:focusable="false"
-                            android:clickable="true" />
+                            android:clickable="true"
+                            android:focusable="false" />
+
                         <ImageView
-                            android:layout_marginTop="-10dp"
                             android:layout_width="72dp"
                             android:layout_height="55dp"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
                             android:src="@drawable/chair" />
 
                         <TextView
@@ -216,11 +221,11 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="40dp"
-                            android:text="Livingroom"
-                            android:textColor="#000000"
-                            android:textSize="22sp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:textAllCaps="false" />
+                            android:text="Livingroom"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="22sp" />
                     </FrameLayout>
 
                     <!-- Button 2: Bed -->
@@ -238,27 +243,30 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:focusable="false"
-                            android:clickable="true" />
+                            android:clickable="true"
+                            android:focusable="false" />
+
                         <ImageView
-                            android:layout_marginTop="-6dp"
                             android:layout_width="72dp"
                             android:layout_height="55dp"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
-                            android:src="@drawable/bed"/>
+                            android:layout_marginTop="-6dp"
+                            android:src="@drawable/bed" />
+
                         <TextView
                             android:id="@+id/tvBed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="40dp"
-                            android:text="Bedroom"
-                            android:textColor="#000000"
-                            android:textSize="22sp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:textAllCaps="false" />
+                            android:text="Bedroom"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="22sp" />
                     </FrameLayout>
+
                     <FrameLayout
                         android:id="@+id/containerElectric"
                         android:layout_width="160dp"
@@ -273,30 +281,31 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:focusable="false"
-                            android:clickable="true" />
+                            android:clickable="true"
+                            android:focusable="false" />
+
                         <ImageView
-                            android:layout_marginTop="-6dp"
                             android:layout_width="72dp"
                             android:layout_height="55dp"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
-                            android:src="@drawable/electric"/>
+                            android:layout_marginTop="-6dp"
+                            android:src="@drawable/electric" />
+
                         <TextView
                             android:id="@+id/tvElectric"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="40dp"
-                            android:text="Electric Area"
-                            android:textColor="#000000"
-                            android:textSize="22sp"
                             android:fontFamily="@font/poppins_semibold"
-                            android:textAllCaps="false" />
+                            android:text="Electric Area"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="22sp" />
                     </FrameLayout>
                 </LinearLayout>
 
-                <!-- Second Row -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

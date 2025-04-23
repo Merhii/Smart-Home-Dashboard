@@ -298,13 +298,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|center"
                     android:layout_marginTop="5dp"
-                    android:text="Heater"
+                    android:text="Curtains"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center" />
                 <Switch
-                    android:id="@+id/switchHeater"
+                    android:id="@+id/switchcurtains"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

@@ -14,11 +14,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import android.content.SharedPreferences
+import android.widget.Toast
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import java.io.IOException
 
 private lateinit var switchLight: Switch
 private lateinit var sharedPreferences: SharedPreferences
 private lateinit var electricityPrefs: SharedPreferences
 private var electricHandler: Handler? = null
+private val client = OkHttpClient()
 private const val LIGHT_CONSUMPTION_KWH_PER_5MIN = 0.00083f
 private const val TOTAL_CONSUMPTION_KEY = "TotalConsumption"
 
@@ -46,9 +51,36 @@ class ElectricActivity : ComponentActivity() {
         handleTracking()
 
         switchLight.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("Electric_Lights", isChecked).apply()
-            handleTracking()
+            if (isChecked) {
+                sendRequest(IP2.acOn)
+                println(IP2.acOn)
+            } else {
+                sendRequest(IP2.acOff)
+            }
         }
+    }
+
+    private fun sendRequest(url: String) {
+        val request = Request.Builder()
+            .url(url)
+            .build()
+
+        client.newCall(request).enqueue(object : okhttp3.Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@ElectricActivity, "Failed to send request", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                response.use {
+                    if (!response.isSuccessful) throw IOException("Unexpected code $response")
+                    runOnUiThread {
+                        Toast.makeText(this@ElectricActivity, "Request Sent Successfully", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
     }
 
     override fun onResume() {

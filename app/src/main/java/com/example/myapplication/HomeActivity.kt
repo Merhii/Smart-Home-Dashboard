@@ -37,17 +37,18 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import okhttp3.OkHttpClient
 
 class HomeActivity : ComponentActivity() {
     val BILL_RATE = 0.4f
     private var prayerTimings: PrayerTimesResponse? = null
     private val client = OkHttpClient()
-    private val notificationApiUrls = listOf("http://192.168.1.139:5000/hello")
     private val notificationMessages = mutableListOf<String>()
     private lateinit var notificationListLayout: LinearLayout
     private lateinit var tvNoNotifications: TextView
-
+    private lateinit var esp32Handler: Handler
+    private lateinit var esp32Runnable: Runnable
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var updateHandler: Handler
@@ -76,12 +77,16 @@ class HomeActivity : ComponentActivity() {
     override fun onPause() {
         super.onPause()
         updateHandler.removeCallbacks(updateRunnable)
+        if (::esp32Handler.isInitialized) {
+            esp32Handler.removeCallbacks(esp32Runnable)
+        }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.home_status)
-        fetchAllNotifications()
+
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("RoomState", Context.MODE_PRIVATE)
 
@@ -168,7 +173,7 @@ class HomeActivity : ComponentActivity() {
         val switchBed = findViewById<Switch>(R.id.switchControl1)
         val switchEnergy = findViewById<Switch>(R.id.switchControl2)
         val switchMorning = findViewById<Switch>(R.id.switchControl3)
-
+        startESP32Polling()
         switchBed.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 activateBedProfile()
@@ -208,22 +213,7 @@ class HomeActivity : ComponentActivity() {
         }
 
     }
-    private fun fetchAllNotifications() {
-        lifecycleScope.launch {
-            notificationMessages.clear()
 
-            for (url in notificationApiUrls) {
-                try {
-                    val result = notireq(url)
-                    val json = org.json.JSONObject(result)
-                    val message = json.getString("data")
-                    notificationMessages.add(message)
-                } catch (e: Exception) {
-                    notificationMessages.add("Failed to fetch from $url")
-                }
-            }
-        }
-    }
 
 
     override fun onResume() {
@@ -263,6 +253,21 @@ class HomeActivity : ComponentActivity() {
         notifyRooms()
     }
 
+    private fun addESP32Notification(msg: String) {
+        if (!notificationMessages.contains(msg)) {
+            notificationMessages.add(0, msg)
+            updateNotificationDot(true)
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
+            if (::notificationListLayout.isInitialized &&
+                notificationListLayout.isShown &&
+                ::tvNoNotifications.isInitialized) {
+                tvNoNotifications.visibility = View.GONE
+                addNotification(msg, notificationListLayout)
+            }
+        }
+    }
+
 
 
     private fun activateEnergyProfile() {
@@ -278,6 +283,124 @@ class HomeActivity : ComponentActivity() {
         }
         notifyRooms()
     }
+    private fun startESP32Polling() {
+        esp32Handler = Handler(Looper.getMainLooper())
+        esp32Runnable = object : Runnable {
+            override fun run() {
+                pollESP32Status()
+                esp32Handler.postDelayed(this, 5000) // Poll every 5 seconds
+            }
+        }
+        esp32Handler.post(esp32Runnable)
+    }
+
+
+    private var lastESPStatus: String = "none"
+
+    private fun pollESP32Status() {
+        pollFromSecurityESP()
+        pollFromSensorESP()
+    }
+    private fun pollFromSensorESP() {
+        pollFlameStatus()
+        pollGasStatus()
+        pollTouchStatus()
+    }
+    private fun pollFlameStatus() {
+        val request = okhttp3.Request.Builder()
+            .url(IP2.flameStatus)
+            .build()
+
+        client.newCall(request).enqueue(object : okhttp3.Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                Log.e("ESP32-Flame", "Failed to reach flame status", e)
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                val result = response.body?.string()?.trim()
+                if (result == "Fire") {
+                    runOnUiThread {
+                        addESP32Notification("🔥 Flame detected!")
+                    }
+                }
+            }
+        })
+    }
+
+    private fun pollGasStatus() {
+        val request = okhttp3.Request.Builder()
+            .url(IP2.gasStatus)
+            .build()
+
+        client.newCall(request).enqueue(object : okhttp3.Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                Log.e("ESP32-Gas", "Failed to reach gas status", e)
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                val result = response.body?.string()?.trim()
+                if (result == "Leak") {
+                    runOnUiThread {
+                        addESP32Notification("⚠️ Gas leak detected!")
+                    }
+                }
+            }
+        })
+    }
+
+    private fun pollTouchStatus() {
+        val request = okhttp3.Request.Builder()
+            .url(IP2.touchStatus)
+            .build()
+
+        client.newCall(request).enqueue(object : okhttp3.Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                Log.e("ESP32-Touch", "Failed to reach touch status", e)
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                val result = response.body?.string()?.trim()
+                if (result == "Open") {
+                    runOnUiThread {
+                        addESP32Notification("🖐️ Touch sensor triggered!")
+                    }
+                }
+            }
+        })
+    }
+
+   private fun pollFromSecurityESP() { val request = okhttp3.Request.Builder()
+            .url(IP.ip + "/status") // Make sure IP.ip = "http://192.168.1.xxx"
+            .build()
+
+        client.newCall(request).enqueue(object : okhttp3.Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                Log.e("ESP32", "Failed to reach ESP32", e)
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                val result = response.body?.string()?.trim()
+                Log.d("ESP32", "Response: $result")
+
+                if (result != null && result != lastESPStatus && result != "none") {
+                    lastESPStatus = result
+                    runOnUiThread {
+                        when (result) {
+                            "knocking" -> addESP32Notification("🚪 Someone is knocking at the door")
+                            "intruder" -> addESP32Notification("🔴 Intruder detected at your home!")
+                        }
+                    }
+                }
+
+                // Reset tracking after 10s lock
+                if (result == "none") {
+                    lastESPStatus = "none"
+                }
+            }
+        })
+    }
+
+
 
 
 
@@ -316,7 +439,10 @@ class HomeActivity : ComponentActivity() {
         // Close button
         dialogView.findViewById<Button>(R.id.btnCloseDialog).setOnClickListener {
             dialog.dismiss()
+            notificationMessages.clear()
+            updateNotificationDot(false)
         }
+
 
         // Display notifications
         if (notificationMessages.isEmpty()) {
