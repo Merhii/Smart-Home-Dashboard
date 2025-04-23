@@ -24,7 +24,7 @@ private lateinit var sharedPreferences: SharedPreferences
 private lateinit var electricityPrefs: SharedPreferences
 private var electricHandler: Handler? = null
 private val client = OkHttpClient()
-private const val LIGHT_CONSUMPTION_KWH_PER_5MIN = 0.00083f
+private const val LIGHT_CONSUMPTION_KWH_PER_5MIN = 0.166f
 private const val TOTAL_CONSUMPTION_KEY = "TotalConsumption"
 
 class ElectricActivity : ComponentActivity() {
@@ -51,13 +51,18 @@ class ElectricActivity : ComponentActivity() {
         handleTracking()
 
         switchLight.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().putBoolean("Electric_Lights", isChecked).apply() // ✅ Add this!
+
             if (isChecked) {
                 sendRequest(IP2.acOn)
                 println(IP2.acOn)
             } else {
                 sendRequest(IP2.acOff)
             }
+
+            handleTracking() // Optional: to restart handler immediately
         }
+
     }
 
     private fun sendRequest(url: String) {

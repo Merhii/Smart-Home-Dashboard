@@ -163,7 +163,7 @@ class HomeActivity : ComponentActivity() {
             startActivity(intent)
         }
         laundry.setOnClickListener {
-            val intent = Intent(this@HomeActivity, ElectricActivity::class.java)
+            val intent = Intent(this@HomeActivity, LaundryActivity::class.java)
             intent.putExtra("loc", "Laundry")
             startActivity(intent)
         }
