@@ -1,7 +1,7 @@
 package com.example.myapplication
 
 object IP2 {
-    const val baseUrl = "http://192.168.1.144"
+    const val baseUrl = "http://10.0.37.193"
 
     // Curtain Control
     val openCurtains = "$baseUrl/curts/open"

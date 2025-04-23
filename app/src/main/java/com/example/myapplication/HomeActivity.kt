@@ -370,7 +370,7 @@ class HomeActivity : ComponentActivity() {
     }
 
    private fun pollFromSecurityESP() { val request = okhttp3.Request.Builder()
-            .url(IP.ip + "/status") // Make sure IP.ip = "http://192.168.1.xxx"
+            .url("10.0.37.186/status") // Make sure IP.ip = "http://192.168.1.xxx"
             .build()
 
         client.newCall(request).enqueue(object : okhttp3.Callback {
